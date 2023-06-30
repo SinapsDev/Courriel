@@ -1,0 +1,78 @@
+.mainContainer {
+    width: 20%;
+    height: 100vh;
+    background-color: #4052ed;
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid rgb(30, 17, 127);
+}
+
+.profileContainer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    padding: 3% 0;
+    align-items: center;
+    justify-content: left;
+    border-bottom: 2px solid rgb(30, 17, 127);
+}
+
+.profileImage {
+    width: 19%;
+    height: auto;
+    margin-right: 12%;
+    
+}
+
+.profileImage img {
+    width: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+    margin-left: 30%;
+}
+
+.profileName {
+    font-size: 3vh;
+    font-weight: 600;
+    color: white;
+}
+
+.menuContainer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.menuItem {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    padding: 3% 0;
+    align-items: center;
+    justify-content: left;
+    border-bottom: 2px solid rgb(30, 17, 127); 
+    cursor: pointer;
+}
+
+.menuItemIcon {
+    width: 10%;
+    height: auto;
+    margin-right: 10%;
+    margin-left: 4%;
+}
+
+.menuItemIcon svg {
+    width: 80%;
+}
+
+.menuItemText {
+    font-size: 2.5vh;
+    font-weight: 600;
+    color: white;
+}
