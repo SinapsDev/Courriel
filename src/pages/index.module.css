@@ -34,13 +34,14 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: azure;
+  background-color: #262626;
 }
 
 .homeContainer .mainTitle {
   margin: 2% auto;
   text-align: center;
-  font-size: 4vh;
+  font-size: 4.5vh;
+  color: white;
 }
 
 .homeContainer .infoContainer {

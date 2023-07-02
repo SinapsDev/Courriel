@@ -23,14 +23,14 @@ export default function Home( { providers }: { providers: AppProps }) {
         {!sessionData && <LoginContainer {...providers} />}
         {sessionData && (
           <>
-            <SideBar user={sessionData.user} />
+            <SideBar />
             <div className={styles.homeContainer}>
               <h1 className={styles.mainTitle}>REGISTRE BUREAU D'ORDRE</h1>
               <div className={styles.infoContainer}>
-                <InfoBox title="Nombre de courriel envoyé aujourd'hui" value={5} />
-                <InfoBox title="Nombre de courriel recu aujourd'hui" value={3} />
-                <InfoBox title="Nombre de courriel envoyé cette semaine" value={14} />
-                <InfoBox title="Nombre de courriel recu cette semaine" value={32} />
+                <InfoBox title="Nombre de courriel envoyé aujourd'hui" value={5} important={4} />
+                <InfoBox title="Nombre de courriel recu aujourd'hui" value={3} important={4} />
+                <InfoBox title="Nombre de courriel envoyé cette semaine" value={14} important={4} />
+                <InfoBox title="Nombre de courriel recu cette semaine" value={32} important={4} />
               </div>
             </div>
           </>
