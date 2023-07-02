@@ -5,11 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 type MenuItemProps = {
     text: string;
     icon: any;
+    onClick: () => void;
 }
 
-export const MenuItem = ({ text, icon }: MenuItemProps) => {
+export const MenuItem = ({ text, icon, onClick }: MenuItemProps) => {
     return (
-        <div className={styles.menuItem}>
+        <div className={styles.menuItem} onClick={onClick} >
             <div className={styles.menuItemIcon}>
                 <FontAwesomeIcon icon={icon} />
             </div>
