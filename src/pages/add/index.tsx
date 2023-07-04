@@ -34,25 +34,6 @@ const AddPage = () => {
     }
   );
 
-  // console.log(isUploading, permittedFileInfo);
-
-  type FormInput = {
-    mailType: string;
-    date: string;
-    receiver?: string;
-    sender?: string;
-    address: string;
-    object: string;
-    transmission: string;
-    importance: string;
-    files: File[];
-  };
-
-  type FieldValues = {
-    [x: string]: any;
-    data?: FormInput;
-  };
-
   const onSubmit = async (data: FieldValues) => {
     if (!files) return;
     const returnedFiles = await startUpload(files);
