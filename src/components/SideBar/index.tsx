@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './index.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faPlus, faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
 import { useSession } from 'next-auth/react'
 import { MenuItem } from '../MenuItem'
@@ -12,7 +11,7 @@ export const SideBar = () => {
 
     if (!user) return null;
 
-    let profileName = user.name?.toLocaleUpperCase();   
+    const profileName = user.name?.toLocaleUpperCase();   
 
     return ( 
         <div className={styles.mainContainer}>

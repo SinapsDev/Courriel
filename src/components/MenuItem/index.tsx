@@ -2,10 +2,11 @@ import React from 'react'
 import styles from './index.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 type MenuItemProps = {
     text: string;
-    icon: any;
+    icon: IconProp;
     link: string;
 }
 

@@ -1,15 +1,14 @@
 import { GetServerSideProps } from "next";
 import styles from "./index.module.css";
-import { getProviders, signIn, signOut, useSession } from "next-auth/react";
+import { getProviders, signIn, useSession } from "next-auth/react";
 import Head from "next/head";
-import Link from "next/link";
 import { api } from "~/utils/api";
 import { AppProps } from "next/app";
 import SideBar from "~/components/SideBar";
 import { InfoBox } from "~/components/InfoBox";
 
 export default function Home( { providers }: { providers: AppProps }) {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  // const hello = api.example.hello.useQuery({ text: "from tRPC" });
   const { data: sessionData } = useSession();
   console.log(sessionData)
   return (
