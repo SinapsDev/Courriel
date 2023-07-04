@@ -7,6 +7,12 @@
     border-right: 2px solid #000;
 }
 
+.mainContainer a {
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
 .profileContainer {
     width: 100%;
     height: auto;
@@ -18,10 +24,11 @@
     border-bottom: 2px solid #000;
 }
 
+
 .profileImage {
     width: 20%;
     height: auto;
-    margin-right: 10%;
+    margin-right: 15%;
 }
 
 .profileImage img {
@@ -33,7 +40,7 @@
 }
 
 .profileInfo {
-    width: 80%;
+    width: 70%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -41,16 +48,18 @@
     align-items: center;
 }
 
-.profileInfo .profileRole {
-    font-weight: lighter;
+.profileRole {
+    font-weight: 300;
+    text-align: center;
 }
 
 .profileName {
-    width: 70%;
+    width: 100%;
     font-size: 3vh;
     font-weight: bold;
     color: #000;
     text-align: center;
+    margin: 0 auto;
 }
 
 .menuContainer {

@@ -12,7 +12,7 @@ export const SideBar = () => {
 
     if (!user) return null;
 
-    let profileName = user.name?.toLocaleUpperCase();
+    let profileName = user.name?.toLocaleUpperCase();   
 
     return ( 
         <div className={styles.mainContainer}>
@@ -26,10 +26,10 @@ export const SideBar = () => {
                 </div>
             </div>
             <div className={styles.menuContainer}>
-                <MenuItem text="Accueil" icon={faHouse} />
-                <MenuItem text="Ajouter un couriel" icon={faPlus} />
-                <MenuItem text="Chercher dans le registre" icon={faSearch} />
-                <MenuItem text="Gestion des permissions" icon={faUser} />
+                <MenuItem text="Accueil" icon={faHouse} link='/' />
+                <MenuItem text="Ajouter un couriel" icon={faPlus} link='/add' />
+                <MenuItem text="Chercher dans le registre" icon={faSearch} link='/search' />
+                <MenuItem text="Gestion des permissions" icon={faUser} link='/permissions' />
             </div>
         </div>
     )

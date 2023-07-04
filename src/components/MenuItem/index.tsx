@@ -1,20 +1,23 @@
 import React from 'react'
 import styles from './index.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Link from 'next/link';
 
 type MenuItemProps = {
     text: string;
     icon: any;
-    onClick: () => void;
+    link: string;
 }
 
-export const MenuItem = ({ text, icon, onClick }: MenuItemProps) => {
+export const MenuItem = ({ text, icon, link }: MenuItemProps) => {
     return (
-        <div className={styles.menuItem} onClick={onClick} >
-            <div className={styles.menuItemIcon}>
-                <FontAwesomeIcon icon={icon} />
+        <Link href={link}>
+            <div className={styles.menuItem} >
+                <div className={styles.menuItemIcon}>
+                    <FontAwesomeIcon icon={icon} />
+                </div>
+                <div className={styles.menuItemText}>{text}</div>
             </div>
-            <div className={styles.menuItemText}>{text}</div>
-        </div>
+        </Link>
     )
 }
