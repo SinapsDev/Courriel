@@ -6,6 +6,9 @@ await import("./src/env.mjs");
 
 /** @type {import("next").NextConfig} */
 const config = {
+  experimental: {
+    esmExternals: false, // THIS IS THE FLAG THAT MATTERS
+  },
   reactStrictMode: false,
 
   /**
@@ -19,7 +22,7 @@ const config = {
     defaultLocale: "en",
   },
   images: {
-    domains: ['lh3.googleusercontent.com'],
+    domains: ["lh3.googleusercontent.com"],
   },
 };
 

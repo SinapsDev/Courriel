@@ -16,23 +16,23 @@
 }
 
 .mainContainer .title {
-    margin: 2% auto;
+    margin: 1% auto;
     text-align: center;
-    font-size: 4.5vh;
+    font-size: 2.5vh;
     color: white;
     font-weight: 800;
 }
 
 .mainContainer .formContainer {
     width: 60%;
-    height: 85%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     background-color: #73D5A6;  
     margin: 0 auto;
     border-radius: 5px;
-    padding: 2%;
+    padding: 1%;
 }
 
 .mainContainer .formContainer select {
@@ -46,7 +46,7 @@
     outline: none;
 }
 
-.mainContainer .formContainer input {
+.mainContainer .formContainer .input {
     width: 100%;
     height: 4vh;
     margin: 2% 0;

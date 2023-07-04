@@ -49,6 +49,7 @@ const AddPage = () => {
           </select>
           <label htmlFor="date">DATE</label>
           <input
+            className={styles.input}
             {...register("date", {
               required: "Vous devez préciser la date du courriel!",
             })}
@@ -60,6 +61,7 @@ const AddPage = () => {
             <label htmlFor="expediteur">EXPEDITEUR</label>
           )}
           <input
+            className={styles.input}
             type="text"
             {...register(mailType === "depart" ? "receiver" : "sender", {
               required:
@@ -70,6 +72,7 @@ const AddPage = () => {
           />
           <label htmlFor="adresse">ADRESSE</label>
           <input
+            className={styles.input}
             type="text"
             {...register("address", {
               required: "Vous devez préciser l'adresse du courriel!",
@@ -77,6 +80,7 @@ const AddPage = () => {
           />
           <label htmlFor="objet">OBJET DE LA CORRESPONDANCE</label>
           <input
+            className={styles.input}
             type="text"
             {...register("object", {
               required: "Vous devez préciser l'objet du courriel!",
@@ -84,6 +88,7 @@ const AddPage = () => {
           />
           <label htmlFor="transmission">TRANSMISSION</label>
           <input
+            className={styles.input}
             type="text"
             {...register("transmission", {
               required: "Vous devez préciser la transmission!",
@@ -97,6 +102,13 @@ const AddPage = () => {
             <option value="important">1 - IMPORANT</option>
             <option value="nonImportant">2 - MOYENEMENT IMPORTANT</option>
           </select>
+          <input
+            {...register("files", {
+              required: "Vous devez ajouter au moins un fichier!",
+            })}
+            type="file"
+            multiple
+          />
           <button type="submit">AJOUTER LE COURRIEL AU REGISTRE</button>
         </form>
       </div>
