@@ -20,7 +20,7 @@ export const receivedMailRouter = createTRPCRouter({
                 sender: z.string(),
                 importance: z.string(),
                 userId : z.string(),
-                filesUrls: z.array(z.string()),
+                filesUrls: z.string(),
                 transmission: z.string(),
             })
         )

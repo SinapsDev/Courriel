@@ -57,7 +57,7 @@ const AddPage = () => {
     if (!files) return;
     const returnedFiles = await startUpload(files);
     if (!(sessionData && sessionData.user) || !returnedFiles) return;
-    const filesUrls = returnedFiles.map((file) => file.fileUrl);
+    const filesUrls = JSON.stringify(returnedFiles.map((file) => file.fileUrl));
 
     if (mailType === "depart") {
       sentMailMutation.mutate({
