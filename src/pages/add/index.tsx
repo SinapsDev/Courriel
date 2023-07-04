@@ -18,6 +18,7 @@ const AddPage = () => {
     handleSubmit,
     formState: { errors },
     clearErrors,
+    reset,
   } = useForm();
 
   const { startUpload, isUploading, permittedFileInfo } = useUploadThing(
@@ -63,6 +64,7 @@ const AddPage = () => {
         userId: sessionData.user.id,
       });
     }
+    reset();
   };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
