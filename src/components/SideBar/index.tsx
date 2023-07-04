@@ -3,6 +3,7 @@ import styles from './index.module.css'
 import { faHouse, faPlus, faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
 import { useSession } from 'next-auth/react'
 import { MenuItem } from '../MenuItem'
+import Image from 'next/image'
 
 export const SideBar = () => {
     const { data: sessionData } = useSession();
@@ -17,7 +18,7 @@ export const SideBar = () => {
         <div className={styles.mainContainer}>
             <div className={styles.profileContainer}>
                 <div className={styles.profileImage}>
-                    <img src={user.image || defaultImageUrl} alt="Avatar" />
+                    <Image src={user.image || defaultImageUrl} alt="Avatar" width={100} height={100} />
                 </div>
                 <div className="profileInfo">
                     <div className={styles.profileName}>{profileName}</div>

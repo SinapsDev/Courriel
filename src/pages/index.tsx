@@ -1,9 +1,9 @@
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import styles from "./index.module.css";
 import { getProviders, signIn, useSession } from "next-auth/react";
 import Head from "next/head";
-import { api } from "~/utils/api";
-import { AppProps } from "next/app";
+// import { api } from "~/utils/api";
+import type { AppProps } from "next/app";
 import SideBar from "~/components/SideBar";
 import { InfoBox } from "~/components/InfoBox";
 
@@ -24,7 +24,7 @@ export default function Home( { providers }: { providers: AppProps }) {
           <>
             <SideBar />
             <div className={styles.homeContainer}>
-              <h1 className={styles.mainTitle}>REGISTRE BUREAU D'ORDRE</h1>
+              <h1 className={styles.mainTitle}>REGISTRE BUREAU D&apos;ORDRE</h1>
               <div className={styles.infoContainer}>
                 <InfoBox title="Nombre de courriel envoyé aujourd'hui" value={5} important={4} />
                 <InfoBox title="Nombre de courriel recu aujourd'hui" value={3} important={4} />
