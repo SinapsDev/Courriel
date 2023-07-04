@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./index.module.css";
 import SideBar from "~/components/SideBar";
-import { useForm } from "react-hook-form";
+import { type FieldValues, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 const AddPage = () => {
@@ -13,18 +13,19 @@ const AddPage = () => {
     clearErrors,
   } = useForm();
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FieldValues) => {
     console.log(data);
   };
 
-  useEffect(() => {
-    if (errors) {
-      Object.values(errors).forEach((error: any) => {
+  if (Object.keys(errors).length != 0) {
+    Object.values(errors).forEach((error) => {
+      console.log(error);
+      if (error && error.message && typeof error.message === "string") {
         toast.error(error.message, { duration: 2000 });
-      });
-      clearErrors();
-    }
-  }, [errors]);
+      }
+    });
+    clearErrors();
+  }
 
   return (
     <div className={styles.parentContainer}>
