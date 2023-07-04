@@ -3,14 +3,14 @@ import styles from "./index.module.css";
 import { getProviders, signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 // import { api } from "~/utils/api";
-import type { AppProps } from "next/app";
 import SideBar from "~/components/SideBar";
 import { InfoBox } from "~/components/InfoBox";
+import type { AppProviders } from "next-auth/providers";
 
-export default function Home( { providers }: { providers: AppProps }) {
+export default function Home( { providers }: { providers: AppProviders }) {
   // const hello = api.example.hello.useQuery({ text: "from tRPC" });
   const { data: sessionData } = useSession();
-  console.log(sessionData)
+
   return (
     <>
       <Head>
@@ -46,7 +46,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 }
 
-function LoginContainer(providers: AppProps) {
+function LoginContainer(providers: AppProviders) {
   return (
     <div className={styles.loginContainer}>
       {Object.values(providers).map((provider) => (
