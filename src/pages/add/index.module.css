@@ -70,3 +70,28 @@
     font-weight: 800;
     cursor: pointer;
 }
+
+.fileInput {
+    display: none;
+}
+
+.customFileUpload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 5px;
+    height: 4vh;
+    font-size: 2vh;
+    
+}
+
+.fileNames {
+    width: 100%;
+    height: 6vh;
+    display: flex;
+    flex-direction: column;
+    margin: 1% 0;
+    overflow-y: scroll;
+}
