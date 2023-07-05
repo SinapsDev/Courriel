@@ -62,6 +62,7 @@ const AddPage = () => {
       });
     }
     reset();
+    setFiles(null);
   };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
