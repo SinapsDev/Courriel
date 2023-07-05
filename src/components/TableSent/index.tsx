@@ -148,11 +148,6 @@ export const TableSent = ({ columns, totalLength }: Iprops) => {
               const pageNumber = e.target.value
                 ? Number(e.target.value) - 1
                 : 0;
-
-              console.log(
-                pageNumber,
-                Math.ceil(totalLength / controller.pageSize)
-              );
               if (pageNumber < 0) return;
               if (pageNumber >= Math.ceil(totalLength / controller.pageSize))
                 return;

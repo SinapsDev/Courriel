@@ -3,7 +3,7 @@ import styles from "./index.module.css";
 import SideBar from "~/components/SideBar";
 import { api } from "~/utils/api";
 import { TableSent } from "~/components/TableSent";
-import { columns } from "~/utils/columns";
+import { columns } from "~/utils/sentColumns";
 import { Spinner } from "~/components/Spinner";
 
 const ReadPage = () => {
