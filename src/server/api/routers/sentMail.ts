@@ -7,9 +7,22 @@ import {
 } from "~/server/api/trpc";
 
 export const sentMailRouter = createTRPCRouter({
-//   getAll: publicProcedure.query(({ ctx }) => {
-//     return ctx.prisma.example.findMany();
-//   }),
+    getTotal: publicProcedure.query(({ ctx }) => {
+        return ctx.prisma.sentMail.count();
+    }),
+
+    getAll: publicProcedure.input(z.object({
+        skip: z.number(),
+        take: z.number(),
+    })).query(({ ctx, input }) => {
+        return ctx.prisma.sentMail.findMany({
+            take: input.take,
+            skip: input.skip,
+            orderBy: {
+                date: "asc",
+            },
+        });
+    }),
 
     createMail: protectedProcedure
         .input(
