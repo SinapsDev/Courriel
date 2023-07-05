@@ -1,14 +1,29 @@
-import { ColumnFilter } from "~/components/TableSent/ColumnFilter";
+import { ColumnFilter } from "~/components/TableReceived/ColumnFilter";
 
 export const columns = [
+  {
+    Header: "Pieces Jointes",
+    accessor: "attachments",
+    Cell: (props: any) => {
+      const rowData = props.cell.row.original;
+      return (
+        <a
+          href={`readreceived/${rowData.id}`}
+          style={{
+            textDecoration: "none",
+            color: "white",
+          }}
+        >
+          Appuyez pour voir
+        </a>
+      );
+    },
+    disableFilters: true,
+  },
   {
     Header: "Numero d'ordre",
     accessor: "id",
     Filter: ColumnFilter,
-    Cell: (props: any) => {
-      const rowData = props.cell.row.original;
-      return <a href={`readreceived/${rowData.id}`}>Click</a>;
-    },
   },
   {
     Header: "Adresse",
@@ -26,7 +41,7 @@ export const columns = [
     Filter: ColumnFilter,
   },
   {
-    Header: "Destinataire",
+    Header: "Expéditeur",
     accessor: "receiver",
     Filter: ColumnFilter,
   },

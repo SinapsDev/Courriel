@@ -11,6 +11,16 @@ export const receivedMailRouter = createTRPCRouter({
         return ctx.prisma.receivedMail.count();
     }),
 
+    getById: publicProcedure.input(z.object({
+        id: z.number(),
+    })).query(({ ctx, input }) => {
+        return ctx.prisma.receivedMail.findUnique({
+            where: {
+                id: input.id,
+            },
+        });
+    }),
+
     getAll: publicProcedure.input(z.object({
         skip: z.number(),
         take: z.number(),

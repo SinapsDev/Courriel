@@ -24,6 +24,16 @@ export const sentMailRouter = createTRPCRouter({
         });
     }),
 
+    getById: publicProcedure.input(z.object({
+        id: z.number(),
+    })).query(({ ctx, input }) => {
+        return ctx.prisma.sentMail.findUnique({
+            where: {
+                id: input.id,
+            },
+        });
+    }),
+
     createMail: protectedProcedure
         .input(
             z.object({
