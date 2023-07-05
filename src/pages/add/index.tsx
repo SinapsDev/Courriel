@@ -156,8 +156,10 @@ const AddPage = () => {
               required: "Vous devez préciser l'importance du courriel!",
             })}
           >
-            <option value="important">1 - IMPORANT</option>
-            <option value="nonImportant">2 - MOYENEMENT IMPORTANT</option>
+            <option value="IMPORTANT">1 - IMPORANT</option>
+            <option value="MOYENEMENT IMPORTANT">
+              2 - MOYENEMENT IMPORTANT
+            </option>
           </select>
           <label className={styles.customFileUpload} htmlFor="fileupload">
             AJOUTER VOS FICHER(S) PDF
