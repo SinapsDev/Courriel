@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./index.module.css";
 import SideBar from "~/components/SideBar";
 import { api } from "~/utils/api";
-import { columns } from "./columns";
+import { columns } from "../../utils/columns";
 import { TableReceived } from "~/components/TableReceived";
 
 const ReadPageReceived = () => {

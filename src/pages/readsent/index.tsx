@@ -3,7 +3,7 @@ import styles from "./index.module.css";
 import SideBar from "~/components/SideBar";
 import { api } from "~/utils/api";
 import { TableSent } from "~/components/TableSent";
-import { columns } from "./columns";
+import { columns } from "~/utils/columns";
 
 const ReadPage = () => {
   const { isLoading } = api.sentMail.getAll.useQuery({
