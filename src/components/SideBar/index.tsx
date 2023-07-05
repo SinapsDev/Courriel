@@ -3,6 +3,7 @@ import styles from "./index.module.css";
 import {
   faEye,
   faHouse,
+  faInbox,
   faPlus,
   faSearch,
   faUser,
@@ -42,7 +43,16 @@ export const SideBar = () => {
       <div className={styles.menuContainer}>
         <MenuItem text="Accueil" icon={faHouse} link="/" />
         <MenuItem text="Ajouter un couriel" icon={faPlus} link="/add" />
-        <MenuItem text="Voir le registre" icon={faEye} link="/read" />
+        <MenuItem
+          text="Voir le registre de départ"
+          icon={faEye}
+          link="/readsent"
+        />
+        <MenuItem
+          text="Voir le registre d'arrivée"
+          icon={faInbox}
+          link="/readreceived"
+        />
         <MenuItem
           text="Chercher dans le registre"
           icon={faSearch}

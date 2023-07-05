@@ -15,7 +15,7 @@ interface Iprops {
   totalLength: number;
 }
 
-export const Table = ({ columns, totalLength }: Iprops) => {
+export const TableSent = ({ columns, totalLength }: Iprops) => {
   const [controller, setController] = React.useState({
     pageIndex: 0,
     pageSize: 10,
@@ -139,11 +139,23 @@ export const Table = ({ columns, totalLength }: Iprops) => {
           <input
             type="number"
             defaultValue={controller.pageIndex + 1}
+            value={controller.pageIndex + 1}
+            min={1}
+            max={Math.ceil(totalLength / controller.pageSize)}
             onChange={(e) => {
-              console.log(e.target.value);
+              if (e.target.value === "") return;
               const pageNumber = e.target.value
                 ? Number(e.target.value) - 1
                 : 0;
+
+              console.log(
+                pageNumber,
+                Math.ceil(totalLength / controller.pageSize)
+              );
+              if (pageNumber < 0) return;
+              if (pageNumber >= Math.ceil(totalLength / controller.pageSize))
+                return;
+
               gotoPage(pageNumber);
               setController({
                 ...controller,

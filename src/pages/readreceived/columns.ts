@@ -1,4 +1,4 @@
-import { ColumnFilter } from "~/components/Table/ColumnFilter";
+import { ColumnFilter } from "~/components/TableSent/ColumnFilter";
 
 export const columns = [
     {

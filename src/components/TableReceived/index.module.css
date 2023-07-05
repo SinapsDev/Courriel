@@ -54,11 +54,12 @@
 .naviguationButtons .gotoPage {
     font-size: 2vh;
     color: #fff;
+    width: 20%;
 }
 
 .naviguationButtons input {
     height: 30px;
-    width: 10%;
+    width: 30px;
     border: none;
     outline: none;
     background-color: #fff;

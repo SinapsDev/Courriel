@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./index.module.css";
 import SideBar from "~/components/SideBar";
 import { api } from "~/utils/api";
-import { Table } from "~/components/Table";
+import { TableSent } from "~/components/TableSent";
 import { columns } from "./columns";
 
 const ReadPage = () => {
@@ -20,9 +20,9 @@ const ReadPage = () => {
     <div className={styles.parentContainer}>
       <SideBar />
       <div className={styles.mainContainer}>
-        <h1 className={styles.mainTitle}>REGISTRE BUREAU D'ORDRE</h1>
+        <h1 className={styles.mainTitle}>REGISTRE DE DEPART</h1>
         <div className={styles.tableContainer}>
-          <Table columns={columns} totalLength={sentMailLenth} />
+          <TableSent columns={columns} totalLength={sentMailLenth} />
         </div>
       </div>
     </div>
