@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./index.module.css";
 import {
   useTable,
   useGlobalFilter,
@@ -47,11 +48,7 @@ export const Table = ({ columns, totalLength }: Iprops) => {
     // @ts-ignore
     canPreviousPage,
     // @ts-ignore
-    pageOptions,
-    // @ts-ignore
     gotoPage,
-    // @ts-ignore
-    pageCount,
   } = useTable(
     // @ts-ignore
     {
@@ -128,57 +125,90 @@ export const Table = ({ columns, totalLength }: Iprops) => {
           })}
         </tbody>
       </table>
-      <div>
-        <span>
+      <div className={styles.naviguationButtons}>
+        <span className={styles.pageIndex}>
           Page{" "}
           <strong>
-            {controller.pageIndex + 1} of {totalLength}
+            {controller.pageIndex + 1} sur{" "}
+            {Math.ceil(totalLength / controller.pageSize)}
           </strong>
         </span>
-        <span>
-          | Go to page:{" "}
+        <span className={styles.gotoPage}>
+          <span className={styles.separator}>|</span>
+          Allez à la page:{" "}
           <input
             type="number"
             defaultValue={controller.pageIndex + 1}
             onChange={(e) => {
+              console.log(e.target.value);
               const pageNumber = e.target.value
                 ? Number(e.target.value) - 1
                 : 0;
               gotoPage(pageNumber);
+              setController({
+                ...controller,
+                pageIndex: pageNumber,
+              });
             }}
           />
         </span>
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {"<<"}
-        </button>
-        <button
-          onClick={() => {
-            previousPage();
-            setController({
-              ...controller,
-              pageIndex: controller.pageIndex - 1,
-            });
-          }}
-        >
-          Précedent
-        </button>
-        <button
-          onClick={() => {
-            nextPage();
-            setController({
-              ...controller,
-              pageIndex: controller.pageIndex + 1,
-            });
-          }}
-        >
-          Suivant
-        </button>
-        <button
-          onClick={() => gotoPage(totalLength - 1)}
-          disabled={!canNextPage}
-        >
-          {">>"}
-        </button>
+        <div className={styles.buttonsContainer}>
+          <button
+            onClick={() => {
+              gotoPage(0);
+              setController({
+                ...controller,
+                pageIndex: 0,
+              });
+            }}
+            disabled={controller.pageIndex === 0}
+          >
+            {"<<"}
+          </button>
+          <button
+            onClick={() => {
+              if (controller.pageIndex === 0) return;
+              previousPage();
+              setController({
+                ...controller,
+                pageIndex: controller.pageIndex - 1,
+              });
+            }}
+          >
+            Précedent
+          </button>
+          <button
+            onClick={() => {
+              if (
+                controller.pageIndex ===
+                Math.ceil(totalLength / controller.pageSize - 1)
+              )
+                return;
+              nextPage();
+              setController({
+                ...controller,
+                pageIndex: controller.pageIndex + 1,
+              });
+            }}
+          >
+            Suivant
+          </button>
+          <button
+            onClick={() => {
+              gotoPage(Math.ceil(totalLength / controller.pageSize - 1));
+              setController({
+                ...controller,
+                pageIndex: Math.ceil(totalLength / controller.pageSize - 1),
+              });
+            }}
+            disabled={
+              controller.pageIndex ===
+              Math.ceil(totalLength / controller.pageSize - 1)
+            }
+          >
+            {">>"}
+          </button>
+        </div>
       </div>
     </>
   );

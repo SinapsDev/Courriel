@@ -3,45 +3,7 @@ import styles from "./index.module.css";
 import SideBar from "~/components/SideBar";
 import { api } from "~/utils/api";
 import { Table } from "~/components/Table";
-import { ColumnFilter } from "~/components/Table/ColumnFilter";
-
-const columns = [
-  {
-    Header: "Numero d'ordre",
-    accessor: "id",
-    disableFilters: true,
-  },
-  {
-    Header: "Adresse",
-    accessor: "address",
-    Filter: ColumnFilter,
-  },
-  {
-    Header: "Date",
-    accessor: "date",
-    Filter: ColumnFilter,
-  },
-  {
-    Header: "Objet de la correspondance",
-    accessor: "object",
-    Filter: ColumnFilter,
-  },
-  {
-    Header: "Destinataire",
-    accessor: "receiver",
-    Filter: ColumnFilter,
-  },
-  {
-    Header: "Importance",
-    accessor: "importance",
-    Filter: ColumnFilter,
-  },
-  {
-    Header: "Transmission",
-    accessor: "transmission",
-    Filter: ColumnFilter,
-  },
-];
+import { columns } from "./columns";
 
 const ReadPage = () => {
   const { isLoading } = api.sentMail.getAll.useQuery({
