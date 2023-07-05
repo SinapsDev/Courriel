@@ -11,7 +11,6 @@ import { makeDataDateToString } from "~/utils/makeDataDateToString";
 
 interface Iprops {
   columns: any;
-  fetchedData: any;
   totalLength: number;
 }
 
@@ -76,19 +75,17 @@ export const Table = ({ columns, totalLength }: Iprops) => {
   const { globalFilter, pageIndex, pageSize } = state;
 
   React.useEffect(() => {
-    console.log("trriged 1");
     if (isLoading) return;
     setData(tableData);
   }, [pageIndex, pageSize, fetchedData]);
 
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading || !data) return <div>loading...</div>;
   return (
     <>
       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => {
-            console.log("headerGroup", headerGroup);
             return (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
@@ -157,12 +154,10 @@ export const Table = ({ columns, totalLength }: Iprops) => {
         <button
           onClick={() => {
             previousPage();
-            console.log("controllerbef", controller);
             setController({
               ...controller,
               pageIndex: controller.pageIndex - 1,
             });
-            console.log("controller", controller);
           }}
         >
           Précedent
