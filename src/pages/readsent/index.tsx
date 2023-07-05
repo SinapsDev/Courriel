@@ -4,6 +4,7 @@ import SideBar from "~/components/SideBar";
 import { api } from "~/utils/api";
 import { TableSent } from "~/components/TableSent";
 import { columns } from "~/utils/columns";
+import { Spinner } from "~/components/Spinner";
 
 const ReadPage = () => {
   const { isLoading } = api.sentMail.getAll.useQuery({
@@ -13,16 +14,17 @@ const ReadPage = () => {
   const { data: sentMailLenth, isLoading: isLengthLoading } =
     api.sentMail.getTotal.useQuery();
 
-  if (isLengthLoading || isLoading || !sentMailLenth)
-    return <div>loading...</div>;
-
   return (
     <div className={styles.parentContainer}>
       <SideBar />
       <div className={styles.mainContainer}>
         <h1 className={styles.mainTitle}>REGISTRE DE DEPART</h1>
         <div className={styles.tableContainer}>
-          <TableSent columns={columns} totalLength={sentMailLenth} />
+          {isLoading || isLengthLoading || !sentMailLenth ? (
+            <Spinner />
+          ) : (
+            <TableSent columns={columns} totalLength={sentMailLenth} />
+          )}
         </div>
       </div>
     </div>

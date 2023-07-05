@@ -54,11 +54,6 @@ export const SideBar = () => {
           link="/readreceived"
         />
         <MenuItem
-          text="Chercher dans le registre"
-          icon={faSearch}
-          link="/search"
-        />
-        <MenuItem
           text="Gestion des permissions"
           icon={faUser}
           link="/permissions"
@@ -67,5 +62,7 @@ export const SideBar = () => {
     </div>
   );
 };
+
+// make the componenet redendred on the server side
 
 export default SideBar;

@@ -9,6 +9,7 @@ import {
 import { GlobalFilter } from "./GlobalFilter";
 import { api } from "~/utils/api";
 import { makeDataDateToString } from "~/utils/makeDataDateToString";
+import { Spinner } from "../Spinner";
 
 interface Iprops {
   columns: any;
@@ -76,7 +77,7 @@ export const TableSent = ({ columns, totalLength }: Iprops) => {
     setData(tableData);
   }, [pageIndex, pageSize, fetchedData]);
 
-  if (isLoading || !data) return <div>loading...</div>;
+  if (isLoading || !data) return <Spinner />;
   return (
     <>
       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />

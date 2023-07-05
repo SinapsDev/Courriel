@@ -2,14 +2,17 @@ import type { GetServerSideProps } from "next";
 import styles from "./index.module.css";
 import { getProviders, signIn, useSession } from "next-auth/react";
 import Head from "next/head";
-// import { api } from "~/utils/api";
 import SideBar from "~/components/SideBar";
 import { InfoBox } from "~/components/InfoBox";
 import type { AppProviders } from "next-auth/providers";
+import { Spinner } from "~/components/Spinner";
 
-export default function Home( { providers }: { providers: AppProviders }) {
-  // const hello = api.example.hello.useQuery({ text: "from tRPC" });
+export default function Home({ providers }: { providers: AppProviders }) {
   const { data: sessionData } = useSession();
+
+  {
+    !sessionData && <Spinner />;
+  }
 
   return (
     <>
@@ -26,10 +29,26 @@ export default function Home( { providers }: { providers: AppProviders }) {
             <div className={styles.homeContainer}>
               <h1 className={styles.mainTitle}>REGISTRE BUREAU D&apos;ORDRE</h1>
               <div className={styles.infoContainer}>
-                <InfoBox title="Nombre de courriel envoyé aujourd'hui" value={5} important={4} />
-                <InfoBox title="Nombre de courriel recu aujourd'hui" value={3} important={4} />
-                <InfoBox title="Nombre de courriel envoyé cette semaine" value={14} important={4} />
-                <InfoBox title="Nombre de courriel recu cette semaine" value={32} important={4} />
+                <InfoBox
+                  title="Nombre de courriel envoyé aujourd'hui"
+                  value={5}
+                  important={4}
+                />
+                <InfoBox
+                  title="Nombre de courriel recu aujourd'hui"
+                  value={3}
+                  important={4}
+                />
+                <InfoBox
+                  title="Nombre de courriel envoyé cette semaine"
+                  value={14}
+                  important={4}
+                />
+                <InfoBox
+                  title="Nombre de courriel recu cette semaine"
+                  value={32}
+                  important={4}
+                />
               </div>
             </div>
           </>
@@ -40,20 +59,28 @@ export default function Home( { providers }: { providers: AppProviders }) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const providers = await getProviders()
+  const providers = await getProviders();
   return {
     props: { providers },
-  }
-}
+  };
+};
 
 function LoginContainer(providers: AppProviders) {
   return (
     <div className={styles.loginContainer}>
       {Object.values(providers).map((provider) => (
-        <button className={styles.loginButton} key={provider.id} onClick={() => signIn(provider.id, {
-          callbackUrl: `${window.location.origin}`
-        })} >Connectez vous avec google</button>
+        <button
+          className={styles.loginButton}
+          key={provider.id}
+          onClick={() =>
+            signIn(provider.id, {
+              callbackUrl: `${window.location.origin}`,
+            })
+          }
+        >
+          Connectez vous avec google
+        </button>
       ))}
     </div>
-  )
+  );
 }
