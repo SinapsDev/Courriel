@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import styles from "./result.module.css";
 import SideBar from "~/components/SideBar";
@@ -13,7 +11,12 @@ import { api } from "~/utils/api";
 
 const ResultPage = () => {
   const router = useRouter();
-  const { formData }: any = router.query;
+  let { data }: any = router.query;
+  let formData = "{}";
+  if (data) {
+    formData = data;
+  }
+
   const parsedData = JSON.parse(formData);
   const { data: sentFetchedData, isLoading: isSentLoading } =
     api.sentMail.getByFilter.useQuery(parsedData);
