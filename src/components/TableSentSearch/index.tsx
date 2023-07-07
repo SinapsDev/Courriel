@@ -1,11 +1,6 @@
 import React from "react";
 import styles from "./index.module.css";
-import {
-  useTable,
-  useGlobalFilter,
-  useFilters,
-  usePagination,
-} from "react-table";
+import { useTable, useFilters, usePagination } from "react-table";
 import { makeDataDateToString } from "~/utils/makeDataDateToString";
 
 interface Iprops {
@@ -32,8 +27,6 @@ export const TableSentSearch = ({ columns, data }: Iprops) => {
     // @ts-ignore
     previousPage,
     // @ts-ignore
-    setGlobalFilter,
-    // @ts-ignore
     canNextPage,
     // @ts-ignore
     canPreviousPage,
@@ -56,12 +49,11 @@ export const TableSentSearch = ({ columns, data }: Iprops) => {
       },
     },
     useFilters,
-    useGlobalFilter,
     usePagination
   );
 
   // @ts-ignore
-  const { globalFilter, pageIndex, pageSize } = state;
+  const { pageIndex, pageSize } = state;
   return (
     <>
       <table {...getTableProps()}>

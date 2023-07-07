@@ -1,12 +1,6 @@
 import React from "react";
 import styles from "./index.module.css";
-import {
-  useTable,
-  useGlobalFilter,
-  useFilters,
-  usePagination,
-} from "react-table";
-import { GlobalFilter } from "./GlobalFilter";
+import { useTable, useFilters, usePagination } from "react-table";
 import { api } from "~/utils/api";
 import { makeDataDateToString } from "~/utils/makeDataDateToString";
 import { Spinner } from "../Spinner";
@@ -43,12 +37,6 @@ export const TableSent = ({ columns, totalLength }: Iprops) => {
     // @ts-ignore
     previousPage,
     // @ts-ignore
-    setGlobalFilter,
-    // @ts-ignore
-    canNextPage,
-    // @ts-ignore
-    canPreviousPage,
-    // @ts-ignore
     gotoPage,
   } = useTable(
     // @ts-ignore
@@ -65,12 +53,11 @@ export const TableSent = ({ columns, totalLength }: Iprops) => {
       },
     },
     useFilters,
-    useGlobalFilter,
     usePagination
   );
 
   // @ts-ignore
-  const { globalFilter, pageIndex, pageSize } = state;
+  const { pageIndex, pageSize } = state;
 
   React.useEffect(() => {
     if (isLoading) return;
@@ -80,7 +67,6 @@ export const TableSent = ({ columns, totalLength }: Iprops) => {
   if (isLoading || !data) return <Spinner />;
   return (
     <>
-      <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => {
