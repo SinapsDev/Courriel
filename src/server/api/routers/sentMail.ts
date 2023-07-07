@@ -7,23 +7,9 @@ import {
 } from "~/server/api/trpc";
 
 export const sentMailRouter = createTRPCRouter({
-  getTotal: protectedProcedure
-    .input(
-      z.object({
-        startDate: z.string().optional(),
-        endDate: z.string().optional(),
-      })
-    )
-    .query(({ ctx, input }) => {
-      return ctx.prisma.sentMail.count({
-        where: {
-          date: {
-            gte: input.startDate ? new Date(input.startDate) : new Date(0),
-            lte: input.endDate ? new Date(input.endDate) : new Date(),
-          },
-        },
-      });
-    }),
+  getTotal: protectedProcedure.query(({ ctx }) => {
+    return ctx.prisma.sentMail.count();
+  }),
 
   getAll: protectedProcedure
     .input(
