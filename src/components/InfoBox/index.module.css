@@ -1,7 +1,7 @@
 .mainContainer {
     display: flex;
     flex-direction: column;
-    background-color: #73D5A6;
+    background-color: #aeffd8;
     width: 40%;
     height: 30%;
     border-radius: 3px;
@@ -51,5 +51,5 @@
     align-items: center;
     font-weight: 900;
     font-size: 5vh;
-    color: #BB0000;
+    color: #b70606;
 }
