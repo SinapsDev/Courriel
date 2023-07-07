@@ -8,7 +8,6 @@ import { Spinner } from "~/components/Spinner";
 
 const SearchPage = () => {
   const [mailType, setMailType] = useState("ARRIVE");
-  const [formData, setData] = useState<any>({});
 
   const {
     register,
@@ -19,12 +18,10 @@ const SearchPage = () => {
   const router = useRouter();
 
   const onSubmit = async (data: any) => {
-    setData(data);
-    console.log(data);
     router.push({
       pathname: "/search/result",
       query: {
-        formData: JSON.stringify(data),
+        data: JSON.stringify(data),
       },
     });
   };

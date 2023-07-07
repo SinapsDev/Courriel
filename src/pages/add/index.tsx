@@ -27,7 +27,6 @@ const AddPage = () => {
       toast.success("uploaded successfully!", { duration: 2000 });
     },
     onUploadError: (e) => {
-      console.log("error", e);
       toast.error("error occurred while uploading", { duration: 2000 });
     },
   });
