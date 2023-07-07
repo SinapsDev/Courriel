@@ -6,13 +6,24 @@ import SideBar from "~/components/SideBar";
 import { InfoBox } from "~/components/InfoBox";
 import type { AppProviders } from "next-auth/providers";
 import { Spinner } from "~/components/Spinner";
+import { api } from "~/utils/api";
 
 export default function Home({ providers }: { providers: AppProviders }) {
   const { data: sessionData } = useSession();
+  const { data: receivedMailDataToday, isLoading: isLoading1 } =
+    api.receivedMail.getNumberOfMailsInDetailsForToday.useQuery();
+  const { data: receivedMailDataWeek, isLoading: isLoading2 } =
+    api.receivedMail.getNumberOfMailsInDetailsForThisWeek.useQuery();
+  const { data: sentMailDataToday, isLoading: isLoading3 } =
+    api.sentMail.getNumberOfMailsInDetailsForToday.useQuery();
+  const { data: sentMailDataWeek, isLoading: isLoading4 } =
+    api.sentMail.getNumberOfMailsInDetailsForThisWeek.useQuery();
 
   {
     !sessionData && <Spinner />;
   }
+
+  console.log(receivedMailDataToday?.important);
 
   return (
     <>
@@ -22,7 +33,10 @@ export default function Home({ providers }: { providers: AppProviders }) {
         <link rel="icon" href="/logo-ministere-sante.ico" />
       </Head>
       <div className={styles.headContainer}>
-        {!sessionData && <LoginContainer {...providers} />}
+        {!sessionData &&
+          (isLoading1 || isLoading2 || isLoading3 || isLoading4) && (
+            <LoginContainer {...providers} />
+          )}
         {sessionData && (
           <>
             <SideBar />
@@ -31,23 +45,23 @@ export default function Home({ providers }: { providers: AppProviders }) {
               <div className={styles.infoContainer}>
                 <InfoBox
                   title="Nombre de courriel envoyé aujourd'hui"
-                  value={5}
-                  important={4}
+                  value={sentMailDataToday?.total || 0}
+                  important={sentMailDataToday?.important || 0}
                 />
                 <InfoBox
                   title="Nombre de courriel recu aujourd'hui"
-                  value={3}
-                  important={4}
+                  value={receivedMailDataToday?.total || 0}
+                  important={receivedMailDataToday?.important || 0}
                 />
                 <InfoBox
                   title="Nombre de courriel envoyé cette semaine"
-                  value={14}
-                  important={4}
+                  value={sentMailDataWeek?.total || 0}
+                  important={sentMailDataWeek?.important || 0}
                 />
                 <InfoBox
                   title="Nombre de courriel recu cette semaine"
-                  value={32}
-                  important={4}
+                  value={receivedMailDataWeek?.total || 0}
+                  important={receivedMailDataWeek?.important || 0}
                 />
               </div>
             </div>
