@@ -6,29 +6,18 @@ import {
   useFilters,
   usePagination,
 } from "react-table";
-import { GlobalFilter } from "./GlobalFilter";
-import { api } from "~/utils/api";
 import { makeDataDateToString } from "~/utils/makeDataDateToString";
-import { Spinner } from "../Spinner";
 
 interface Iprops {
   columns: any;
-  totalLength: number;
+  data: any;
 }
 
-export const TableReceived = ({ columns, totalLength }: Iprops) => {
-  const [controller, setController] = React.useState({
-    pageIndex: 0,
-    pageSize: 10,
-  });
-  const { data: fetchedData, isLoading } = api.receivedMail.getAll.useQuery({
-    skip: Math.abs(controller.pageIndex * controller.pageSize),
-    take: controller.pageSize,
-  });
-
-  const modifiedData = makeDataDateToString(fetchedData);
-  const tableData = React.useMemo(() => modifiedData, [modifiedData]);
-  const [data, setData] = React.useState(tableData);
+export const TableReceiveSearch = ({ columns, data }: Iprops) => {
+  data = data ? data : [];
+  const modifiedData = makeDataDateToString(data);
+  const memoData = React.useMemo(() => modifiedData, []);
+  const totalLength = data ? data.length : 0;
   // @ts-ignore
   const {
     getTableProps,
@@ -45,15 +34,21 @@ export const TableReceived = ({ columns, totalLength }: Iprops) => {
     // @ts-ignore
     setGlobalFilter,
     // @ts-ignore
+    canNextPage,
+    // @ts-ignore
+    canPreviousPage,
+    // @ts-ignore,
+    pageoptions,
+    // @ts-ignore
     gotoPage,
   } = useTable(
     // @ts-ignore
     {
       columns,
       // @ts-ignore
-      data,
+      data: memoData,
+      manualPagination: false,
       // @ts-ignore
-      manualPagination: true,
       initialState: {
         // @ts-ignore
         pageIndex: 0,
@@ -67,16 +62,8 @@ export const TableReceived = ({ columns, totalLength }: Iprops) => {
 
   // @ts-ignore
   const { globalFilter, pageIndex, pageSize } = state;
-
-  React.useEffect(() => {
-    if (isLoading) return;
-    setData(tableData);
-  }, [pageIndex, pageSize, fetchedData]);
-
-  if (isLoading || !data) return <Spinner />;
   return (
     <>
-      <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => {
@@ -126,8 +113,7 @@ export const TableReceived = ({ columns, totalLength }: Iprops) => {
         <span className={styles.pageIndex}>
           Page{" "}
           <strong>
-            {controller.pageIndex + 1} sur{" "}
-            {Math.ceil(totalLength / controller.pageSize)}
+            {pageIndex + 1} sur {Math.ceil(totalLength / pageSize)}
           </strong>
         </span>
         <span className={styles.gotoPage}>
@@ -135,29 +121,19 @@ export const TableReceived = ({ columns, totalLength }: Iprops) => {
           Allez à la page:{" "}
           <input
             type="number"
-            defaultValue={controller.pageIndex + 1}
-            value={controller.pageIndex + 1}
+            defaultValue={pageIndex + 1}
+            value={pageIndex + 1}
             min={1}
-            max={Math.ceil(totalLength / controller.pageSize)}
+            max={Math.ceil(totalLength / pageSize)}
             onChange={(e) => {
               if (e.target.value === "") return;
               const pageNumber = e.target.value
                 ? Number(e.target.value) - 1
                 : 0;
-
-              console.log(
-                pageNumber,
-                Math.ceil(totalLength / controller.pageSize)
-              );
               if (pageNumber < 0) return;
-              if (pageNumber >= Math.ceil(totalLength / controller.pageSize))
-                return;
+              if (pageNumber >= Math.ceil(totalLength / pageSize)) return;
 
               gotoPage(pageNumber);
-              setController({
-                ...controller,
-                pageIndex: pageNumber,
-              });
             }}
           />
         </span>
@@ -165,55 +141,34 @@ export const TableReceived = ({ columns, totalLength }: Iprops) => {
           <button
             onClick={() => {
               gotoPage(0);
-              setController({
-                ...controller,
-                pageIndex: 0,
-              });
             }}
-            disabled={controller.pageIndex === 0}
+            disabled={pageIndex === 0}
           >
             {"<<"}
           </button>
           <button
+            disabled={!canPreviousPage}
             onClick={() => {
-              if (controller.pageIndex === 0) return;
+              if (pageIndex === 0) return;
               previousPage();
-              setController({
-                ...controller,
-                pageIndex: controller.pageIndex - 1,
-              });
             }}
           >
             Précedent
           </button>
           <button
+            disabled={!canNextPage}
             onClick={() => {
-              if (
-                controller.pageIndex ===
-                Math.ceil(totalLength / controller.pageSize - 1)
-              )
-                return;
+              if (pageIndex === Math.ceil(totalLength / pageSize - 1)) return;
               nextPage();
-              setController({
-                ...controller,
-                pageIndex: controller.pageIndex + 1,
-              });
             }}
           >
             Suivant
           </button>
           <button
             onClick={() => {
-              gotoPage(Math.ceil(totalLength / controller.pageSize - 1));
-              setController({
-                ...controller,
-                pageIndex: Math.ceil(totalLength / controller.pageSize - 1),
-              });
+              gotoPage(Math.ceil(totalLength / pageSize - 1));
             }}
-            disabled={
-              controller.pageIndex ===
-              Math.ceil(totalLength / controller.pageSize - 1)
-            }
+            disabled={pageIndex === Math.ceil(totalLength / pageSize - 1)}
           >
             {">>"}
           </button>

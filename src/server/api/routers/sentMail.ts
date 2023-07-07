@@ -7,11 +7,11 @@ import {
 } from "~/server/api/trpc";
 
 export const sentMailRouter = createTRPCRouter({
-    getTotal: publicProcedure.query(({ ctx }) => {
+    getTotal: protectedProcedure.query(({ ctx }) => {
         return ctx.prisma.sentMail.count();
     }),
 
-    getAll: publicProcedure.input(z.object({
+    getAll: protectedProcedure.input(z.object({
         skip: z.number(),
         take: z.number(),
     })).query(({ ctx, input }) => {
@@ -19,17 +19,43 @@ export const sentMailRouter = createTRPCRouter({
             take: input.take,
             skip: input.skip,
             orderBy: {
-                date: "asc",
+                date: "desc",
             },
         });
     }),
 
-    getById: publicProcedure.input(z.object({
+    getById: protectedProcedure.input(z.object({
         id: z.number(),
     })).query(({ ctx, input }) => {
         return ctx.prisma.sentMail.findUnique({
             where: {
                 id: input.id,
+            },
+        });
+    }),
+
+    getByFilter: protectedProcedure.input(z.object({
+        object: z.string().optional(),
+        receiver: z.string().optional(),
+        transmission: z.string().optional(),
+        startDate: z.string().optional(),
+        endDate: z.string().optional()
+    })).query(({ ctx, input }) => {
+        return ctx.prisma.sentMail.findMany({
+            where: {
+                object: {
+                    contains: input.object,
+                },
+                receiver: {
+                    contains: input.receiver,
+                },
+                transmission: {
+                    contains: input.transmission,
+                },
+                date: {
+                    gte: input.startDate ? new Date(input.startDate) : new Date(0),
+                    lte: input.endDate ? new Date(input.endDate) : new Date(),
+                }
             },
         });
     }),

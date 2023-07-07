@@ -21,6 +21,32 @@ export const receivedMailRouter = createTRPCRouter({
         });
     }),
 
+    getByFilter: protectedProcedure.input(z.object({
+        object: z.string().optional(),
+        sender: z.string().optional(),
+        transmission: z.string().optional(),
+        startDate: z.string().optional(),
+        endDate: z.string().optional()
+    })).query(({ ctx, input }) => {
+        return ctx.prisma.receivedMail.findMany({
+            where: {
+                object: {
+                    contains: input.object,
+                },
+                transmission: {
+                    contains: input.transmission,
+                },
+                date: {
+                    gte: input.startDate ? new Date(input.startDate) : new Date(0),
+                    lte: input.endDate ? new Date(input.endDate) : new Date(),
+                },
+                sender: {
+                    contains: input.sender,
+                },
+            },
+        });
+    }),
+
     getAll: publicProcedure.input(z.object({
         skip: z.number(),
         take: z.number(),
@@ -29,7 +55,7 @@ export const receivedMailRouter = createTRPCRouter({
             take: input.take,
             skip: input.skip,
             orderBy: {
-                date: "asc",
+                date: "desc",
             },
         });
     }),

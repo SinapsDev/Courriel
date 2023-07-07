@@ -1,5 +1,6 @@
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
+    previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -85,4 +86,6 @@ model SentMail {
     filesUrls    String   @db.Text
     author       User     @relation(fields: [userId], references: [id])
     userId       String
+
+    @@fulltext([object])
 }

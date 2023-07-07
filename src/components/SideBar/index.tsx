@@ -54,6 +54,11 @@ export const SideBar = () => {
           link="/readreceived"
         />
         <MenuItem
+          text="Chercher la base de donnée"
+          icon={faSearch}
+          link="/search"
+        />
+        <MenuItem
           text="Gestion des permissions"
           icon={faUser}
           link="/permissions"
