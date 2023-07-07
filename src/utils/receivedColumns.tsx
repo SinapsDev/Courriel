@@ -8,7 +8,7 @@ export const columns = [
       const rowData = props.cell.row.original;
       return (
         <a
-          href={`readreceived/${rowData.id}`}
+          href={`/readreceived/${rowData.id}`}
           style={{
             textDecoration: "none",
             color: "white",
