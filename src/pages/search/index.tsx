@@ -48,7 +48,13 @@ const SearchPage = () => {
     return (
       <div className={styles.parentContainer}>
         <SideBar />
-        <div className={styles.mainContainer}>
+        <div
+          className={styles.mainContainer}
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           VOUS N'AVEZ PAS LA PERMISSION D'ACCEDER A CETTE PAGE
         </div>
       </div>

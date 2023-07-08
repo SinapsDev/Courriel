@@ -12,9 +12,8 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     background-color: #ececec;
+    align-items: center;
 }
 
 .mainContainer .mainTitle {
