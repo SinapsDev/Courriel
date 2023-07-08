@@ -4,6 +4,8 @@ import SideBar from "~/components/SideBar";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { api } from "~/utils/api";
+import { useSession } from "next-auth/react";
+import { Spinner } from "~/components/Spinner";
 
 const RemovePage = () => {
   const {
@@ -14,6 +16,11 @@ const RemovePage = () => {
     reset,
   } = useForm();
 
+  const { data: sessionData } = useSession();
+  const { data: userPermissions, isLoading: permissionsLoading } =
+    api.user.getUserPermissions.useQuery({
+      id: sessionData?.user?.id || "",
+    });
   const sentMutation = api.sentMail.deleteMail.useMutation();
   const receivedMutation = api.sentMail.deleteMail.useMutation();
 
@@ -37,6 +44,34 @@ const RemovePage = () => {
       }
     });
     clearErrors();
+  }
+
+  if (!sessionData) return null;
+  if (permissionsLoading)
+    return (
+      <div className={styles.parentContainer}>
+        <Spinner />
+      </div>
+    );
+
+  if (
+    (!userPermissions?.canAccess || !userPermissions?.canDel) &&
+    !userPermissions?.isAdmin
+  ) {
+    return (
+      <div className={styles.parentContainer}>
+        <SideBar />
+        <div
+          className={styles.mainContainer}
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          VOUS N'AVEZ PAS LA PERMISSION D'ACCEDER A CETTE PAGE
+        </div>
+      </div>
+    );
   }
 
   return (
