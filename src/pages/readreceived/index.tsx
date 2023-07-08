@@ -5,14 +5,42 @@ import { api } from "~/utils/api";
 import { columns } from "../../utils/receivedColumns";
 import { TableReceived } from "~/components/TableReceived";
 import { Spinner } from "~/components/Spinner";
+import { useSession } from "next-auth/react";
 
 const ReadPageReceived = () => {
   const { isLoading } = api.receivedMail.getAll.useQuery({
     skip: 0,
     take: 10,
   });
+  const { data: sessionData } = useSession();
+  const { data: userPermissions, isLoading: permissionsLoading } =
+    api.user.getUserPermissions.useQuery({
+      id: sessionData?.user?.id || "",
+    });
   const { data: receivedMailLenth, isLoading: isLengthLoading } =
     api.receivedMail.getTotal.useQuery();
+
+  if (!sessionData) return null;
+  if (permissionsLoading)
+    return (
+      <div className={styles.parentContainer}>
+        <Spinner />
+      </div>
+    );
+
+  if (
+    (!userPermissions?.canAccess || !userPermissions?.canReadReceived) &&
+    !userPermissions?.isAdmin
+  ) {
+    return (
+      <div className={styles.parentContainer}>
+        <SideBar />
+        <div className={styles.mainContainer}>
+          VOUS N'AVEZ PAS LA PERMISSION D'ACCEDER A CETTE PAGE
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.parentContainer}>

@@ -5,8 +5,14 @@ import { useForm } from "react-hook-form";
 import { api } from "~/utils/api";
 import { useRouter } from "next/router";
 import { Spinner } from "~/components/Spinner";
+import { useSession } from "next-auth/react";
 
 const SearchPage = () => {
+  const { data: sessionData } = useSession();
+  const { data: userPermissions, isLoading: permissionsLoading } =
+    api.user.getUserPermissions.useQuery({
+      id: sessionData?.user?.id || "",
+    });
   const [mailType, setMailType] = useState("ARRIVE");
 
   const {
@@ -25,6 +31,29 @@ const SearchPage = () => {
       },
     });
   };
+
+  if (!sessionData) return null;
+  if (permissionsLoading)
+    return (
+      <div className={styles.parentContainer}>
+        <Spinner />
+      </div>
+    );
+
+  if (
+    (!userPermissions?.canAccess ||
+      (!userPermissions?.canReadSent && !userPermissions?.canReadReceived)) &&
+    !userPermissions?.isAdmin
+  ) {
+    return (
+      <div className={styles.parentContainer}>
+        <SideBar />
+        <div className={styles.mainContainer}>
+          VOUS N'AVEZ PAS LA PERMISSION D'ACCEDER A CETTE PAGE
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.parentContainer}>

@@ -62,7 +62,6 @@ model UserPermission {
     canDel          Boolean
     canReadSent     Boolean
     canReadReceived Boolean
-    canEditPerms    Boolean
     user            User    @relation(fields: [userId], references: [id], onDelete: Cascade)
     userId          String
 

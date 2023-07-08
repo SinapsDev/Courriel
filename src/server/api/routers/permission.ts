@@ -30,7 +30,6 @@ export const permissionRouter = createTRPCRouter({
           isAdmin: false,
           canAdd: false,
           canDel: false,
-          canEditPerms: false,
           canReadReceived: false,
           canReadSent: false,
           id: input.userId,

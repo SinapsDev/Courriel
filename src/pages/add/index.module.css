@@ -13,6 +13,8 @@
     display: flex;
     flex-direction: column;
     background-color: #ececec;
+    justify-content: center;
+    align-items: center;
 }
 
 .mainContainer .title {
@@ -25,7 +27,7 @@
 
 .mainContainer .formContainer {
     width: 60%;
-    height: 70%;
+    height: auto;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;

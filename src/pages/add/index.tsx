@@ -6,11 +6,16 @@ import toast from "react-hot-toast";
 import { useUploadThing } from "~/utils/uploadthingHelper";
 import { api } from "~/utils/api";
 import { useSession } from "next-auth/react";
+import { Spinner } from "~/components/Spinner";
 
 const AddPage = () => {
   const { data: sessionData } = useSession();
   const [mailType, setMailType] = useState("depart");
   const [files, setFiles] = useState<File[] | null>(null);
+  const { data: userPermissions, isLoading: permissionsLoading } =
+    api.user.getUserPermissions.useQuery({
+      id: sessionData?.user?.id || "",
+    });
   const sentMailMutation = api.sentMail.createMail.useMutation();
   const receivedMailMutation = api.receivedMail.createMail.useMutation();
   const {
@@ -21,7 +26,7 @@ const AddPage = () => {
     reset,
   } = useForm();
 
-  const { startUpload } = useUploadThing("fileUploader", {
+  const { startUpload, isUploading } = useUploadThing("fileUploader", {
     onClientUploadComplete: (data) => {
       if (!data) return;
       toast.success("uploaded successfully!", { duration: 2000 });
@@ -33,6 +38,7 @@ const AddPage = () => {
 
   const onSubmit = async (data: FieldValues) => {
     if (!files) return;
+    toast.loading("Envoi en cours...", { duration: 2000 });
     const returnedFiles = await startUpload(files);
     if (!(sessionData && sessionData.user) || !returnedFiles) return;
     const filesUrls = JSON.stringify(returnedFiles.map((file) => file.fileUrl));
@@ -78,6 +84,29 @@ const AddPage = () => {
       }
     });
     clearErrors();
+  }
+
+  if (!sessionData) return null;
+  if (permissionsLoading)
+    return (
+      <div className={styles.parentContainer}>
+        <SideBar />
+        <Spinner />
+      </div>
+    );
+
+  if (
+    (!userPermissions?.canAccess || !userPermissions?.canAdd) &&
+    !userPermissions?.isAdmin
+  ) {
+    return (
+      <div className={styles.parentContainer}>
+        <SideBar />
+        <div className={styles.mainContainer}>
+          VOUS N'AVEZ PAS LA PERMISSION D'ACCEDER A CETTE PAGE
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -161,7 +190,9 @@ const AddPage = () => {
               ))}
             </div>
           )}
-          <button type="submit">AJOUTER LE COURRIEL AU REGISTRE</button>
+          <button disabled={isUploading} type="submit">
+            AJOUTER LE COURRIEL AU REGISTRE
+          </button>
         </form>
       </div>
     </div>
