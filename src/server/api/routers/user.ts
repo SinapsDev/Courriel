@@ -17,6 +17,12 @@ export const userRouter = createTRPCRouter({
         where: {
           id: input.id,
         },
+        select: {
+          UserPermission: true,
+          name: true,
+          email: true,
+          image: true,
+        },
       });
     }),
 });

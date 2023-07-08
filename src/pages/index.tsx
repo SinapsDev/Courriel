@@ -23,8 +23,6 @@ export default function Home({ providers }: { providers: AppProviders }) {
     !sessionData && <Spinner />;
   }
 
-  console.log(receivedMailDataToday?.important);
-
   return (
     <>
       <Head>

@@ -36,7 +36,7 @@ export const columns = [
           href={`/readreceived/${rowData.id}`}
           style={{
             textDecoration: "none",
-            color: "white",
+            color: "#000",
           }}
         >
           Appuyez pour voir

@@ -3,10 +3,13 @@ import styles from "./index.module.css";
 import SideBar from "~/components/SideBar";
 import { api } from "~/utils/api";
 import { Spinner } from "~/components/Spinner";
+import { useRouter } from "next/router";
 
 const PermissionsPage = () => {
   const { data: allUsers, isLoading: isLoadingUsers } =
     api.user.getAll.useQuery();
+
+  const router = useRouter();
   return (
     <div className={styles.parentContainer}>
       <SideBar />
@@ -19,13 +22,18 @@ const PermissionsPage = () => {
               <Spinner />
             ) : (
               allUsers?.map((user) => (
-                <div className={styles.userContainer}>
+                <div className={styles.userContainer} key={user.id}>
                   <div className={styles.userInfos}>
                     <p>Nom: {user.name}</p>
                     <span> | </span>
                     <p>Email: {user.email}</p>
                   </div>
-                  <button className={styles.button}>
+                  <button
+                    className={styles.button}
+                    onClick={() => {
+                      router.push(`/permissions/${user.id}`);
+                    }}
+                  >
                     Gérer les permissions
                   </button>
                 </div>

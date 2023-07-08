@@ -6,7 +6,7 @@ export const Spinner = () => {
       height="80"
       width="80"
       radius={1}
-      color="#aeffd8"
+      color="#54e7ff"
       ariaLabel="puff-loading"
       wrapperStyle={{}}
       wrapperClass=""
