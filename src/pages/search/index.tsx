@@ -87,12 +87,6 @@ const SearchPage = () => {
               <input type="text" {...register("object")} id="" />
             </div>
           </div>
-          <div className={styles.filterContainer}>
-            <div className={styles.filterTitle}>Filtrer par transmission:</div>
-            <div className={styles.filterInputs}>
-              <input type="text" {...register("transmission")} id="" />
-            </div>
-          </div>
           <button type={"submit"} className={styles.searchButton}>
             CHERCHER
           </button>

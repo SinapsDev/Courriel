@@ -1,17 +1,13 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import {
-  createTRPCRouter,
-  publicProcedure,
-  protectedProcedure,
-} from "~/server/api/trpc";
+import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 
 export const receivedMailRouter = createTRPCRouter({
-  getTotal: publicProcedure.query(({ ctx }) => {
+  getTotal: protectedProcedure.query(({ ctx }) => {
     return ctx.prisma.receivedMail.count();
   }),
 
-  getById: publicProcedure
+  getById: protectedProcedure
     .input(
       z.object({
         id: z.number(),
@@ -30,7 +26,6 @@ export const receivedMailRouter = createTRPCRouter({
       z.object({
         object: z.string().optional(),
         sender: z.string().optional(),
-        transmission: z.string().optional(),
         startDate: z.string().optional(),
         endDate: z.string().optional(),
       })
@@ -40,9 +35,6 @@ export const receivedMailRouter = createTRPCRouter({
         where: {
           object: {
             contains: input.object,
-          },
-          transmission: {
-            contains: input.transmission,
           },
           date: {
             gte: input.startDate ? new Date(input.startDate) : new Date(0),
@@ -55,7 +47,7 @@ export const receivedMailRouter = createTRPCRouter({
       });
     }),
 
-  getAll: publicProcedure
+  getAll: protectedProcedure
     .input(
       z.object({
         skip: z.number(),
@@ -145,28 +137,24 @@ export const receivedMailRouter = createTRPCRouter({
   createMail: protectedProcedure
     .input(
       z.object({
-        address: z.string(),
         date: z.string(),
         object: z.string(),
         sender: z.string(),
         importance: z.string(),
         userId: z.string(),
         filesUrls: z.string(),
-        transmission: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {
       await ctx.prisma.receivedMail
         .create({
           data: {
-            address: input.address,
             date: new Date(input.date),
             object: input.object,
             sender: input.sender,
             importance: input.importance,
             userId: input.userId,
             filesUrls: input.filesUrls,
-            transmission: input.transmission,
           },
         })
         .then((res) => {

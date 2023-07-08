@@ -39,24 +39,20 @@ const AddPage = () => {
 
     if (mailType === "depart") {
       sentMailMutation.mutate({
-        address: data.address,
         date: data.date,
         filesUrls: filesUrls,
         importance: data.importance,
         object: data.object,
         receiver: data.receiver,
-        transmission: data.transmission,
         userId: sessionData.user.id,
       });
     } else {
       receivedMailMutation.mutate({
-        address: data.address,
         date: data.date,
         filesUrls: filesUrls,
         importance: data.importance,
         object: data.object,
         sender: data.sender,
-        transmission: data.transmission,
         userId: sessionData.user.id,
       });
     }
@@ -127,28 +123,12 @@ const AddPage = () => {
                   : "Vous devez préciser le l'éxpediteur!",
             })}
           />
-          <label htmlFor="adresse">ADRESSE</label>
-          <input
-            className={styles.input}
-            type="text"
-            {...register("address", {
-              required: "Vous devez préciser l'adresse du courriel!",
-            })}
-          />
           <label htmlFor="objet">OBJET DE LA CORRESPONDANCE</label>
           <input
             className={styles.input}
             type="text"
             {...register("object", {
               required: "Vous devez préciser l'objet du courriel!",
-            })}
-          />
-          <label htmlFor="transmission">TRANSMISSION</label>
-          <input
-            className={styles.input}
-            type="text"
-            {...register("transmission", {
-              required: "Vous devez préciser la transmission!",
             })}
           />
           <select

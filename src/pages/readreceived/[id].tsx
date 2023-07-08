@@ -42,16 +42,8 @@ const MailData = ({ id }: any) => {
               <p className={styles.mailDataContent}>{mailData.object}</p>
             </div>
             <div className={styles.mailData}>
-              <p className={styles.mailDataTitle}>ADDRESSE</p>
-              <p className={styles.mailDataContent}>{mailData.address}</p>
-            </div>
-            <div className={styles.mailData}>
               <p className={styles.mailDataTitle}>IMPORTANCE:</p>
               <p className={styles.mailDataContent}>{mailData.importance}</p>
-            </div>
-            <div className={styles.mailData}>
-              <p className={styles.mailDataTitle}>TRANSMISSION:</p>
-              <p className={styles.mailDataContent}>{mailData.transmission}</p>
             </div>
             <div className={styles.files}>
               <p className={styles.filesTitle}>FICHIERS:</p>
