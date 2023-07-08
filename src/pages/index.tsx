@@ -36,8 +36,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
 function LoginContainer(providers: AppProviders) {
   return (
     <div className={styles.loginContainer}>
+      <h1 className={styles.mainTitle}>GESTION DES COURRIELS</h1>
       {Object.values(providers).map((provider) => (
-        <button
+        <div
           className={styles.loginButton}
           key={provider.id}
           onClick={() =>
@@ -47,7 +48,7 @@ function LoginContainer(providers: AppProviders) {
           }
         >
           Connectez vous avec google
-        </button>
+        </div>
       ))}
     </div>
   );

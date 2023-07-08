@@ -9,47 +9,28 @@
   width: 50%;
   height: 70%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
 }
 
 .loginButton {
-  height: 2rem;
-  width: auto;
-  text-align: center;
+  display: flex;
   justify-content: center;
+  align-items: center;
+  height: 2rem;
   padding: 5%;
-  line-height: 2px;
   margin: 4% auto;
   font-size: 3.5vh;
-  background-color: #31fc83;
-  border: .75px solid black;
-  border-radius: 7px;
+  background-color: #54e7ff;
+  border-radius: 5px;
   cursor: pointer;
-}
-/* 
-.homeContainer {
-  width: 75%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: #ececec;
+  font-weight: 500;
 }
 
-.homeContainer .mainTitle {
-  margin: 2% auto;
-  text-align: center;
-  font-size: 4.5vh;
-  color: #000;
+.mainTitle {
+  font-size: 5vh;
+  font-weight: 800;
+  margin: 3% 0;
 }
-
-.homeContainer .infoContainer {
-  display: flex;
-  width: 90%;
-  height: 90vh;
-  margin: 0 auto;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 5%;
-} */
