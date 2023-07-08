@@ -46,6 +46,7 @@ model User {
     sessions            Session[]
     CreatedReceivedMail ReceivedMail[]
     CreatedSentMail     SentMail[]
+    permissions         String         @default("[]") @db.Text()
 
     @@map("users")
 }
