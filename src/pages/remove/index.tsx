@@ -22,7 +22,7 @@ const RemovePage = () => {
       id: sessionData?.user?.id || "",
     });
   const sentMutation = api.sentMail.deleteMail.useMutation();
-  const receivedMutation = api.sentMail.deleteMail.useMutation();
+  const receivedMutation = api.receivedMail.deleteMail.useMutation();
 
   const onSumbit = (data: any) => {
     if (data.mailType === "ARRIVEE") {
@@ -89,8 +89,8 @@ const RemovePage = () => {
               required: "Vous devez préciser le type du courriel!",
             })}
           >
-            <option value="DEPART">1- DEPART</option>
-            <option value="ARRIVEE">2- ARRIVEE</option>
+            <option value="ARRIVEE">1- ARRIVEE</option>
+            <option value="DEPART">2- DEPART</option>
           </select>
           <label>Numero d'ordre du courriel:</label>
           <input

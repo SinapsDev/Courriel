@@ -1,6 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
+import { utapi } from "uploadthing/server";
 
 export const sentMailRouter = createTRPCRouter({
   getTotal: protectedProcedure.query(({ ctx }) => {
@@ -179,6 +180,10 @@ export const sentMailRouter = createTRPCRouter({
         })
         .catch((err: string) => {
           throw new TRPCError({ message: err, code: "INTERNAL_SERVER_ERROR" });
+        })
+        .then((res) => {
+          console.log(res.filesUrls);
+          utapi.deleteFiles(JSON.parse(res.filesUrls));
         });
 
       return "Mail deleted";
