@@ -6,6 +6,7 @@ import {
   faInbox,
   faPlus,
   faSearch,
+  faTrash,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { useSession } from "next-auth/react";
@@ -43,6 +44,7 @@ export const SideBar = () => {
       <div className={styles.menuContainer}>
         <MenuItem text="Accueil" icon={faHouse} link="/home" />
         <MenuItem text="Ajouter un couriel" icon={faPlus} link="/add" />
+        <MenuItem text="Supprimer un couriel" icon={faTrash} link="/remove" />
         <MenuItem
           text="Voir le registre de départ"
           icon={faEye}

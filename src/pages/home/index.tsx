@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./index.module.css";
 import { useSession } from "next-auth/react";
 import { api } from "~/utils/api";
@@ -20,6 +20,15 @@ const HomePage = () => {
     api.sentMail.getNumberOfMailsInDetailsForToday.useQuery();
   const { data: sentMailDataWeek, isLoading: isLoading4 } =
     api.sentMail.getNumberOfMailsInDetailsForThisWeek.useQuery();
+  const mutation = api.permission.createDefaultPermissions.useMutation();
+
+  useEffect(() => {
+    if (!permissionsLoading) {
+      if (!userPermissions) {
+        mutation.mutate({ userId: sessionData?.user.id || "" });
+      }
+    }
+  }, [permissionsLoading, userPermissions]);
 
   if (!sessionData) return null;
   if (permissionsLoading)

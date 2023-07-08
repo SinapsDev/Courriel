@@ -40,11 +40,11 @@ td {
 }
 
 tr:hover {
-  background-color: #4b4949;
+  background-color: #aaaaaa;
 }
 
 tr:nth-child(even) {
-  background-color: #4b4949;
+  background-color: #aaaaaa;
 }
 
 ::-webkit-scrollbar {

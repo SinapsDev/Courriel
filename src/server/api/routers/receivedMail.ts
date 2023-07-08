@@ -166,4 +166,24 @@ export const receivedMailRouter = createTRPCRouter({
 
       return "Mail sent";
     }),
+
+  deleteMail: protectedProcedure
+    .input(
+      z.object({
+        id: z.number(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      await ctx.prisma.receivedMail
+        .delete({
+          where: {
+            id: input.id,
+          },
+        })
+        .catch((err: string) => {
+          throw new TRPCError({ message: err, code: "INTERNAL_SERVER_ERROR" });
+        });
+
+      return "Mail deleted";
+    }),
 });
