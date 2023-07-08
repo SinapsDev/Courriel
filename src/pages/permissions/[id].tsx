@@ -27,6 +27,7 @@ const UserPermissionPage = ({ id }: { id: string }) => {
     canDel: false,
     canReadSent: false,
     canReadReceived: false,
+    canAccess: false,
     isAdmin: false,
   });
 
@@ -37,6 +38,7 @@ const UserPermissionPage = ({ id }: { id: string }) => {
       canReadSent: checked.canReadSent,
       canReadReceived: checked.canReadReceived,
       isAdmin: checked.isAdmin,
+      canAccess: checked.canAccess,
       userId: id,
     });
     router.push("/permissions");
@@ -53,6 +55,7 @@ const UserPermissionPage = ({ id }: { id: string }) => {
           canReadSent: userPermissions?.canReadSent,
           canReadReceived: userPermissions?.canReadReceived,
           isAdmin: userPermissions?.isAdmin,
+          canAccess: userPermissions?.canAccess,
         });
       }
     }
@@ -94,6 +97,18 @@ const UserPermissionPage = ({ id }: { id: string }) => {
             onSubmit={handleSubmit(onSubmit)}
             className={styles.permissionsContainer}
           >
+            <div className={styles.checkBoxContainer}>
+              <label htmlFor="">ACCEDER A L'APPLICATION:</label>
+              <input
+                checked={checked.canAccess}
+                type="checkbox"
+                {...register("canAccess")}
+                id=""
+                onChange={(e) =>
+                  setChecked({ ...checked, canAccess: e.target.checked })
+                }
+              />
+            </div>
             <div className={styles.checkBoxContainer}>
               <label htmlFor="">AJOUTER UN COURRIEL:</label>
               <input

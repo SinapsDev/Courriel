@@ -26,6 +26,7 @@ export const permissionRouter = createTRPCRouter({
       const permissions = ctx.prisma.userPermission.create({
         data: {
           userId: input.userId,
+          canAccess: false,
           isAdmin: false,
           canAdd: false,
           canDel: false,
@@ -47,6 +48,7 @@ export const permissionRouter = createTRPCRouter({
         canDel: z.boolean(),
         canReadReceived: z.boolean(),
         canReadSent: z.boolean(),
+        canAccess: z.boolean(),
       })
     )
     .mutation(({ ctx, input }) => {
@@ -60,6 +62,7 @@ export const permissionRouter = createTRPCRouter({
           canDel: input.canDel,
           canReadReceived: input.canReadReceived,
           canReadSent: input.canReadSent,
+          canAccess: input.canAccess,
         },
       });
       return permissions;

@@ -2,22 +2,11 @@ import type { GetServerSideProps } from "next";
 import styles from "./index.module.css";
 import { getProviders, signIn, useSession } from "next-auth/react";
 import Head from "next/head";
-import SideBar from "~/components/SideBar";
-import { InfoBox } from "~/components/InfoBox";
 import type { AppProviders } from "next-auth/providers";
 import { Spinner } from "~/components/Spinner";
-import { api } from "~/utils/api";
 
 export default function Home({ providers }: { providers: AppProviders }) {
   const { data: sessionData } = useSession();
-  const { data: receivedMailDataToday, isLoading: isLoading1 } =
-    api.receivedMail.getNumberOfMailsInDetailsForToday.useQuery();
-  const { data: receivedMailDataWeek, isLoading: isLoading2 } =
-    api.receivedMail.getNumberOfMailsInDetailsForThisWeek.useQuery();
-  const { data: sentMailDataToday, isLoading: isLoading3 } =
-    api.sentMail.getNumberOfMailsInDetailsForToday.useQuery();
-  const { data: sentMailDataWeek, isLoading: isLoading4 } =
-    api.sentMail.getNumberOfMailsInDetailsForThisWeek.useQuery();
 
   {
     !sessionData && <Spinner />;
@@ -31,40 +20,7 @@ export default function Home({ providers }: { providers: AppProviders }) {
         <link rel="icon" href="/logo-ministere-sante.ico" />
       </Head>
       <div className={styles.headContainer}>
-        {!sessionData &&
-          (isLoading1 || isLoading2 || isLoading3 || isLoading4) && (
-            <LoginContainer {...providers} />
-          )}
-        {sessionData && (
-          <>
-            <SideBar />
-            <div className={styles.homeContainer}>
-              <h1 className={styles.mainTitle}>REGISTRE BUREAU D&apos;ORDRE</h1>
-              <div className={styles.infoContainer}>
-                <InfoBox
-                  title="Nombre de courriel envoyé aujourd'hui"
-                  value={sentMailDataToday?.total || 0}
-                  important={sentMailDataToday?.important || 0}
-                />
-                <InfoBox
-                  title="Nombre de courriel recu aujourd'hui"
-                  value={receivedMailDataToday?.total || 0}
-                  important={receivedMailDataToday?.important || 0}
-                />
-                <InfoBox
-                  title="Nombre de courriel envoyé cette semaine"
-                  value={sentMailDataWeek?.total || 0}
-                  important={sentMailDataWeek?.important || 0}
-                />
-                <InfoBox
-                  title="Nombre de courriel recu cette semaine"
-                  value={receivedMailDataWeek?.total || 0}
-                  important={receivedMailDataWeek?.important || 0}
-                />
-              </div>
-            </div>
-          </>
-        )}
+        <LoginContainer {...providers} />
       </div>
     </>
   );
@@ -86,7 +42,7 @@ function LoginContainer(providers: AppProviders) {
           key={provider.id}
           onClick={() =>
             signIn(provider.id, {
-              callbackUrl: `${window.location.origin}`,
+              callbackUrl: `/home`,
             })
           }
         >

@@ -25,4 +25,17 @@ export const userRouter = createTRPCRouter({
         },
       });
     }),
+  getUserPermissions: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .query(({ ctx, input }) => {
+      return ctx.prisma.userPermission.findUnique({
+        where: {
+          id: input.id,
+        },
+      });
+    }),
 });
