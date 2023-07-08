@@ -3,7 +3,7 @@
     flex-direction: row;
     height: 100vh;
     width: 100%;
-    background-color: #262626;
+    background-color: #ececec;
 }
 
 .mainContainer {
@@ -15,7 +15,7 @@
 
 .mainTitle {
     width: 100%;
-    color: #fff;
+    color: #000;
     margin: 2% 0;
     text-align: center;
     font-weight: 800;
@@ -24,7 +24,7 @@
 .usersContainer {
     display: flex;
     flex-direction: column;
-    color: #fff;
+    color: #000;
     padding: 2%;
 }
 
@@ -39,7 +39,7 @@
     justify-content: space-between;
     margin: 2% 0;
     padding: 2%;
-    background-color: #aeffd8;
+    background-color: #54e7ff;
     border-radius: 5px;
     color: #000;
 }
@@ -54,11 +54,12 @@
 }
 
 .userContainer button {
-    background-color: #fff;
+    background-color: #eeeeee;
     border: none;
     border-radius: 5px;
     padding: 1%;
     font-weight: 500;
+    font-size: 2vh;
     cursor: pointer;
-    border: #262626 1px solid;
+    border: #ececec 1px solid;
 }

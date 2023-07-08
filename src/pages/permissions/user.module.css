@@ -1,0 +1,31 @@
+.parentContainer {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+    background-color: #ececec;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    height: 100%;
+}
+
+.mainTitle {
+    width: 100%;
+    color: #000;
+    margin: 2% 0;
+    text-align: center;
+    font-weight: 800;
+    font-size: 4vh;
+}
+
+.permissionsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding: 3%;
+    color: #000;
+}

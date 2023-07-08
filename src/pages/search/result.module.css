@@ -4,7 +4,7 @@
     height: 100vh;
     display: flex;
     flex-direction: row;
-    background-color: #262626;
+    background-color: #ececec;
 }
 
 .mainContainer {
@@ -17,7 +17,7 @@
 }
 
 .mainTitle {
-    color: #fff;
+    color: #000;
     font-size: 3.5vh;
     font-weight: 800;
     margin: 2% 0;

@@ -2,13 +2,13 @@
     display: flex;
     flex-direction: row;
     height: 100vh;
-    background-color: #262626;
+    background-color: #ececec;
 }
 
 .mainContainer {
     width: 75%;
     height: 100%;
-    background-color: #262626;
+    background-color: #ececec;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,7 +19,7 @@
 .tableContainer {
     width: 100%;
     height: 90%;
-    background-color: #262626;
+    background-color: #ececec;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,5 +31,5 @@
     font-weight: 600;
     margin-bottom: 1rem;
     text-align: center;
-    color: #fff;
+    color: #000;
 }
