@@ -4,7 +4,7 @@ const f = createUploadthing();
 
 export const ourFileRouter = {
   fileUploader: f({
-    "application/pdf": { maxFileSize: "4MB", maxFileCount: 99 },
+    "application/pdf": { maxFileCount: 99 },
   }).onUploadComplete(({ file }) => {
     console.log("Upload complete for userId:");
 
