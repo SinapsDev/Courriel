@@ -12,10 +12,15 @@ import {
 import { useSession } from "next-auth/react";
 import { MenuItem } from "../MenuItem";
 import Image from "next/image";
+import { api } from "~/utils/api";
 
 export const SideBar = () => {
   const { data: sessionData } = useSession();
   const user = sessionData?.user;
+  const { data: userPermissions, isLoading } =
+    api.user.getUserPermissions.useQuery({
+      id: user?.id || "",
+    });
   const defaultImageUrl =
     "https://cdn.discordapp.com/attachments/830772844019449876/1124723956440629368/profile.png";
 
@@ -37,7 +42,11 @@ export const SideBar = () => {
         <div className="profileInfo">
           <div className={styles.profileName}>{profileName}</div>
           <div className={styles.profileRole}>
-            <em>Administrateur</em>
+            <em>
+              {isLoading ? "Chargement..." : ""}
+              {!isLoading && userPermissions?.isAdmin ? "Administrateur" : ""}
+              {!isLoading && !userPermissions?.isAdmin ? "Utilisateur" : ""}
+            </em>
           </div>
         </div>
       </div>
