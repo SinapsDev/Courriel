@@ -18,7 +18,7 @@ export const columns = [
   },
   {
     Header: "Expéditeur",
-    accessor: "receiver",
+    accessor: "sender",
     Filter: ColumnFilter,
   },
   {
