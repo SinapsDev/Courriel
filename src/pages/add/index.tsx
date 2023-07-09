@@ -51,6 +51,7 @@ const AddPage = () => {
         object: data.object,
         receiver: data.receiver,
         userId: sessionData.user.id,
+        orderNumber: data.orderNumber,
       });
     } else {
       receivedMailMutation.mutate({
@@ -60,6 +61,7 @@ const AddPage = () => {
         object: data.object,
         sender: data.sender,
         userId: sessionData.user.id,
+        orderNumber: data.orderNumber,
       });
     }
     reset();
@@ -129,6 +131,14 @@ const AddPage = () => {
             <option value="depart">DEPART</option>
             <option value="arrive">ARRIVEE</option>
           </select>
+          <label htmlFor="date">NUMERO D'ORDRE</label>
+          <input
+            className={styles.input}
+            {...register("orderNumber", {
+              required: "Vous devez préciser la numero d'ordre!",
+            })}
+            type="text"
+          />
           <label htmlFor="date">DATE</label>
           <input
             className={styles.input}

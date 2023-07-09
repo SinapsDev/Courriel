@@ -77,31 +77,33 @@ model VerificationToken {
 }
 
 model ReceivedMail {
-    id         Int      @id @default(autoincrement())
-    createdAt  DateTime @default(now())
-    updatedAt  DateTime @updatedAt
-    date       DateTime
-    object     String
-    sender     String
-    importance String
-    filesUrls  String   @db.Text
-    author     User     @relation(fields: [userId], references: [id])
-    userId     String
+    id          Int      @id @default(autoincrement())
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    date        DateTime
+    object      String
+    sender      String
+    importance  String
+    filesUrls   String   @db.Text
+    author      User     @relation(fields: [userId], references: [id])
+    userId      String
+    orderNumber String
 
     @@index([userId])
 }
 
 model SentMail {
-    id         Int      @id @default(autoincrement())
-    createdAt  DateTime @default(now())
-    updatedAt  DateTime @updatedAt
-    date       DateTime
-    object     String
-    receiver   String
-    importance String
-    filesUrls  String   @db.Text
-    author     User     @relation(fields: [userId], references: [id])
-    userId     String
+    id          Int      @id @default(autoincrement())
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    date        DateTime
+    object      String
+    receiver    String
+    importance  String
+    filesUrls   String   @db.Text
+    author      User     @relation(fields: [userId], references: [id])
+    userId      String
+    orderNumber String
 
     @@index([userId])
     @@fulltext([object])

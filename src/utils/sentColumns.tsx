@@ -3,7 +3,7 @@ import { ColumnFilter } from "~/components/TableSent/ColumnFilter";
 export const columns = [
   {
     Header: "Numero d'ordre",
-    accessor: "id",
+    accessor: "orderNumber",
     Filter: ColumnFilter,
   },
   {

@@ -3,7 +3,7 @@ import { ColumnFilter } from "~/components/TableReceived/ColumnFilter";
 export const columns = [
   {
     Header: "Numero d'ordre",
-    accessor: "id",
+    accessor: "orderNumber",
     Filter: ColumnFilter,
   },
   {

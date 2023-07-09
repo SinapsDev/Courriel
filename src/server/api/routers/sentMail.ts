@@ -46,11 +46,15 @@ export const sentMailRouter = createTRPCRouter({
         receiver: z.string().optional(),
         startDate: z.string().optional(),
         endDate: z.string().optional(),
+        orderNumber: z.string().optional(),
       })
     )
     .query(({ ctx, input }) => {
       return ctx.prisma.sentMail.findMany({
         where: {
+          orderNumber: {
+            contains: input.orderNumber,
+          },
           object: {
             contains: input.object,
           },
@@ -142,6 +146,7 @@ export const sentMailRouter = createTRPCRouter({
         importance: z.string(),
         userId: z.string(),
         filesUrls: z.string(),
+        orderNumber: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -154,6 +159,7 @@ export const sentMailRouter = createTRPCRouter({
             importance: input.importance,
             userId: input.userId,
             filesUrls: input.filesUrls,
+            orderNumber: input.orderNumber,
           },
         })
         .then((res) => {

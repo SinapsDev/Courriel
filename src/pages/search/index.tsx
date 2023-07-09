@@ -88,6 +88,14 @@ const SearchPage = () => {
             </div>
           </div>
           <div className={styles.filterContainer}>
+            <div className={styles.filterTitle}>
+              Filtrer par Numero d'ordre:
+            </div>
+            <div className={styles.filterInputs}>
+              <input type="text" {...register("orderNumber")} id="" />
+            </div>
+          </div>
+          <div className={styles.filterContainer}>
             <div className={styles.filterTitle}>Filtrer par date:</div>
             <div className={styles.filterInputs}>
               Du:
