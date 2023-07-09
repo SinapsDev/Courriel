@@ -24,10 +24,7 @@ const PermissionsPage = () => {
       </div>
     );
 
-  if (
-    (!userPermissions?.canAccess || !userPermissions?.canReadSent) &&
-    !userPermissions?.isAdmin
-  ) {
+  if (!userPermissions?.isAdmin) {
     return (
       <div className={styles.parentContainer}>
         <SideBar />
