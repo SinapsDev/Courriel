@@ -21,17 +21,17 @@ const RemovePage = () => {
     api.user.getUserPermissions.useQuery({
       id: sessionData?.user?.id || "",
     });
-  const sentMutation = api.sentMail.deleteMail.useMutation();
-  const receivedMutation = api.receivedMail.deleteMail.useMutation();
+  const sentMutation = api.sentMail.deleteByOrderNumber.useMutation();
+  const receivedMutation = api.receivedMail.deleteByOrderNumber.useMutation();
 
   const onSumbit = (data: any) => {
     if (data.mailType === "ARRIVEE") {
       receivedMutation.mutate({
-        id: parseInt(data.id),
+        id: data.id,
       });
     } else {
       sentMutation.mutate({
-        id: parseInt(data.id),
+        id: data.id,
       });
     }
     toast.success("Courriel supprimé avec succès!", { duration: 2000 });

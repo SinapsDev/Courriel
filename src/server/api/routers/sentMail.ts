@@ -221,25 +221,24 @@ export const sentMailRouter = createTRPCRouter({
 
       return "Mail sent";
     }),
-  deleteMail: protectedProcedure
+  deleteByOrderNumber: protectedProcedure
     .input(
       z.object({
-        id: z.number(),
+        id: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {
       await ctx.prisma.sentMail
-        .delete({
+        .deleteMany({
           where: {
-            id: input.id,
+            orderNumber: input.id,
           },
+        })
+        .then((res) => {
+          console.log(res);
         })
         .catch((err: string) => {
           throw new TRPCError({ message: err, code: "INTERNAL_SERVER_ERROR" });
-        })
-        .then((res) => {
-          console.log(res.filesUrls);
-          utapi.deleteFiles(JSON.parse(res.filesUrls));
         });
 
       return "Mail deleted";
