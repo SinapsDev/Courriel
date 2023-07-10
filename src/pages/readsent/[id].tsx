@@ -25,7 +25,7 @@ const MailData = ({ id }: any) => {
           <div className={styles.mailDataContainer}>
             <div className={styles.mailData}>
               <p className={styles.mailDataTitle}>NUMERO D'ORDRE:</p>
-              <p className={styles.mailDataContent}>{mailData.id}</p>
+              <p className={styles.mailDataContent}>{mailData.orderNumber}</p>
             </div>
             <div className={styles.mailData}>
               <p className={styles.mailDataTitle}>DATE D'ENVOI:</p>
