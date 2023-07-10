@@ -43,7 +43,8 @@ const EditPage = () => {
   const { startUpload, isUploading } = useUploadThing("fileUploader", {
     onClientUploadComplete: (data) => {
       if (!data) return;
-      toast.success("uploaded successfully!", { duration: 2000 });
+      toast.success("Courriel modifié avec succes", { duration: 2000 });
+      router.push("/edit");
     },
     onUploadError: (e) => {
       toast.error("error occurred while uploading", { duration: 2000 });
@@ -53,11 +54,11 @@ const EditPage = () => {
   const onSubmit = async (data: FieldValues) => {
     let filesUrls: any = "[]";
     if (files) {
+      toast.loading("Envoi en cours...", { duration: 2000 });
       const returnedFiles = await startUpload(files);
       if (!(sessionData && sessionData.user) || !returnedFiles) return;
       filesUrls = JSON.stringify(returnedFiles.map((file) => file.fileUrl));
     }
-    toast.loading("Envoi en cours...", { duration: 2000 });
     if (mailType === "DEPART") {
       sentMailMutation.mutate({
         id: mailDataSent![0]!.id,
@@ -79,6 +80,11 @@ const EditPage = () => {
         orderNumber: data.orderNumber,
       });
     }
+    if (!files) {
+      toast.success("Courrier modifié avec succès", { duration: 2000 });
+      router.push("/edit");
+    }
+
     reset();
     setFiles(null);
   };
