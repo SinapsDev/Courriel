@@ -1,0 +1,75 @@
+.parentContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    height: 100%;
+    align-items: center;
+}
+
+.mainTitle {
+    font-size: 4.5vh;
+    font-weight: 800;
+    margin: 2% 0;
+}
+
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100vh;
+    margin-top: 5%;
+    align-items: center;
+}
+
+.formContainer label {
+    margin: 2% 0;
+    font-size: 3vh;
+    font-weight: 500;
+}
+
+.formContainer input {
+    width: 50%;
+    height: 5vh;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 1%;
+    font-size: 2vh;
+    outline: none;
+}
+
+.formContainer select {
+    width: 50%;
+    height: 5vh;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 1%;
+    font-size: 2vh;
+    outline: none;
+}
+
+.formContainer option {
+    font-size: 2vh;
+    font-weight: 500;
+}
+
+.formContainer button {
+    width: 50%;
+    height: 5vh;
+    border: none;
+    border-radius: 5px;
+    background-color: #54e7ff;
+    color: #000;
+    font-size: 2vh;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    margin-top: 4%;
+}

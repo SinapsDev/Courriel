@@ -89,7 +89,7 @@ model ReceivedMail {
     userId      String
     orderNumber String
 
-    @@index([userId])
+    @@index([userId, orderNumber])
 }
 
 model SentMail {
@@ -105,6 +105,5 @@ model SentMail {
     userId      String
     orderNumber String
 
-    @@index([userId])
-    @@fulltext([object])
+    @@index([userId, orderNumber])
 }

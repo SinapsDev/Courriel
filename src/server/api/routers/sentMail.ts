@@ -39,6 +39,56 @@ export const sentMailRouter = createTRPCRouter({
       });
     }),
 
+  getByOrderNumber: protectedProcedure
+    .input(
+      z.object({
+        orderNumber: z.string(),
+      })
+    )
+    .query(({ ctx, input }) => {
+      return ctx.prisma.sentMail.findMany({
+        where: {
+          orderNumber: input.orderNumber,
+        },
+      });
+    }),
+
+  editMail: protectedProcedure
+    .input(
+      z.object({
+        id: z.number(),
+        date: z.string().optional(),
+        object: z.string().optional(),
+        receiver: z.string().optional(),
+        importance: z.string().optional(),
+        filesUrls: z.string().optional(),
+        orderNumber: z.string().optional(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      await ctx.prisma.sentMail
+        .update({
+          where: {
+            id: input.id,
+          },
+          data: {
+            date: input.date ? new Date(input.date) : undefined,
+            object: input.object,
+            receiver: input.receiver,
+            importance: input.importance,
+            filesUrls: input.filesUrls,
+            orderNumber: input.orderNumber,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        })
+
+        .catch((err: string) => {
+          throw new TRPCError({ message: err, code: "INTERNAL_SERVER_ERROR" });
+        });
+    }),
+
   getByFilter: protectedProcedure
     .input(
       z.object({

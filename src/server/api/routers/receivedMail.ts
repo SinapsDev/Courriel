@@ -50,6 +50,19 @@ export const receivedMailRouter = createTRPCRouter({
         },
       });
     }),
+  getByOrderNumber: protectedProcedure
+    .input(
+      z.object({
+        orderNumber: z.string(),
+      })
+    )
+    .query(({ ctx, input }) => {
+      return ctx.prisma.receivedMail.findMany({
+        where: {
+          orderNumber: input.orderNumber,
+        },
+      });
+    }),
 
   getAll: protectedProcedure
     .input(
@@ -137,6 +150,42 @@ export const receivedMailRouter = createTRPCRouter({
         throw new TRPCError({ message: err, code: "INTERNAL_SERVER_ERROR" });
       });
   }),
+
+  editMail: protectedProcedure
+    .input(
+      z.object({
+        id: z.number(),
+        date: z.string().optional(),
+        object: z.string().optional(),
+        sender: z.string().optional(),
+        importance: z.string().optional(),
+        filesUrls: z.string().optional(),
+        orderNumber: z.string().optional(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      await ctx.prisma.receivedMail
+        .update({
+          where: {
+            id: input.id,
+          },
+          data: {
+            date: input.date ? new Date(input.date) : undefined,
+            object: input.object,
+            sender: input.sender,
+            importance: input.importance,
+            filesUrls: input.filesUrls,
+            orderNumber: input.orderNumber,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        })
+
+        .catch((err: string) => {
+          throw new TRPCError({ message: err, code: "INTERNAL_SERVER_ERROR" });
+        });
+    }),
 
   createMail: protectedProcedure
     .input(

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./index.module.css";
 import {
+  faEdit,
   faEye,
   faHouse,
   faInbox,
@@ -53,6 +54,7 @@ export const SideBar = () => {
       <div className={styles.menuContainer}>
         <MenuItem text="Accueil" icon={faHouse} link="/home" />
         <MenuItem text="Ajouter un couriel" icon={faPlus} link="/add" />
+        <MenuItem text="Modifier un couriel" icon={faEdit} link="/edit" />
         <MenuItem text="Supprimer un couriel" icon={faTrash} link="/remove" />
         <MenuItem
           text="Voir le registre de départ"
