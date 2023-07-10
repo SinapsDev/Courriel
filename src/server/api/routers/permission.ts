@@ -30,6 +30,7 @@ export const permissionRouter = createTRPCRouter({
           isAdmin: false,
           canAdd: false,
           canDel: false,
+          canEdit: false,
           canReadReceived: false,
           canReadSent: false,
           id: input.userId,
@@ -48,6 +49,7 @@ export const permissionRouter = createTRPCRouter({
         canReadReceived: z.boolean(),
         canReadSent: z.boolean(),
         canAccess: z.boolean(),
+        canEdit: z.boolean(),
       })
     )
     .mutation(({ ctx, input }) => {
@@ -62,6 +64,7 @@ export const permissionRouter = createTRPCRouter({
           canReadReceived: input.canReadReceived,
           canReadSent: input.canReadSent,
           canAccess: input.canAccess,
+          canEdit: input.canEdit,
         },
       });
       return permissions;

@@ -25,6 +25,7 @@ const UserPermissionPage = ({ id }: { id: string }) => {
   const [checked, setChecked] = useState({
     canAdd: false,
     canDel: false,
+    canEdit: false,
     canReadSent: false,
     canReadReceived: false,
     canAccess: false,
@@ -35,6 +36,7 @@ const UserPermissionPage = ({ id }: { id: string }) => {
     updatePermissionsMutation.mutate({
       canAdd: checked.canAdd,
       canDel: checked.canDel,
+      canEdit: checked.canEdit,
       canReadSent: checked.canReadSent,
       canReadReceived: checked.canReadReceived,
       isAdmin: checked.isAdmin,
@@ -52,6 +54,7 @@ const UserPermissionPage = ({ id }: { id: string }) => {
         setChecked({
           canAdd: userPermissions?.canAdd,
           canDel: userPermissions?.canDel,
+          canEdit: userPermissions?.canEdit,
           canReadSent: userPermissions?.canReadSent,
           canReadReceived: userPermissions?.canReadReceived,
           isAdmin: userPermissions?.isAdmin,
@@ -118,6 +121,18 @@ const UserPermissionPage = ({ id }: { id: string }) => {
                 id=""
                 onChange={(e) =>
                   setChecked({ ...checked, canAdd: e.target.checked })
+                }
+              />
+            </div>
+            <div className={styles.checkBoxContainer}>
+              <label htmlFor="">MODIFIER UN COURRIEL:</label>
+              <input
+                checked={checked.canEdit}
+                type="checkbox"
+                {...register("canEdit")}
+                id=""
+                onChange={(e) =>
+                  setChecked({ ...checked, canEdit: e.target.checked })
                 }
               />
             </div>

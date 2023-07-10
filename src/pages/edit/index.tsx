@@ -49,7 +49,7 @@ const EditPage = () => {
     );
 
   if (
-    (!userPermissions?.canAccess || !userPermissions?.canDel) &&
+    (!userPermissions?.canAccess || !userPermissions?.canEdit) &&
     !userPermissions?.isAdmin
   ) {
     return (
