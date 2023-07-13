@@ -4,6 +4,7 @@ import { useTable, useFilters, usePagination } from "react-table";
 import { api } from "~/utils/api";
 import { makeDataDateToString } from "~/utils/makeDataDateToString";
 import { Spinner } from "../Spinner";
+import { sortData } from "~/utils/sortData";
 
 interface Iprops {
   columns: any;
@@ -22,7 +23,7 @@ export const TableReceived = ({ columns, totalLength }: Iprops) => {
 
   const modifiedData = makeDataDateToString(fetchedData);
   const tableData = React.useMemo(() => modifiedData, [modifiedData]);
-  const [data, setData] = React.useState(tableData);
+  const [data, setData] = React.useState(sortData(tableData));
   // @ts-ignore
   const {
     getTableProps,
@@ -61,7 +62,7 @@ export const TableReceived = ({ columns, totalLength }: Iprops) => {
 
   React.useEffect(() => {
     if (isLoading) return;
-    setData(tableData);
+    setData(sortData(tableData));
   }, [pageIndex, pageSize, fetchedData]);
 
   if (isLoading || !data) return <Spinner />;

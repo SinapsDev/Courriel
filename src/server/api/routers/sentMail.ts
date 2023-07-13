@@ -20,7 +20,7 @@ export const sentMailRouter = createTRPCRouter({
         take: input.take,
         skip: input.skip,
         orderBy: {
-          date: "desc",
+          id: "desc",
         },
       });
     }),

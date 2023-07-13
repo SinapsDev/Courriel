@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./index.module.css";
 import { useTable, useFilters, usePagination } from "react-table";
 import { makeDataDateToString } from "~/utils/makeDataDateToString";
+import { sortData } from "~/utils/sortData";
 
 interface Iprops {
   columns: any;
@@ -39,7 +40,7 @@ export const TableReceiveSearch = ({ columns, data }: Iprops) => {
     {
       columns,
       // @ts-ignore
-      data: memoData,
+      data: sortData(memoData),
       manualPagination: false,
       // @ts-ignore
       initialState: {
