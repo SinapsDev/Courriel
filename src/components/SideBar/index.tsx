@@ -53,9 +53,9 @@ export const SideBar = () => {
       </div>
       <div className={styles.menuContainer}>
         <MenuItem text="Accueil" icon={faHouse} link="/home" />
-        <MenuItem text="Ajouter un couriel" icon={faPlus} link="/add" />
-        <MenuItem text="Modifier un couriel" icon={faEdit} link="/edit" />
-        <MenuItem text="Supprimer un couriel" icon={faTrash} link="/remove" />
+        <MenuItem text="Ajouter un courriel" icon={faPlus} link="/add" />
+        <MenuItem text="Modifier un courriel" icon={faEdit} link="/edit" />
+        <MenuItem text="Supprimer un courriel" icon={faTrash} link="/remove" />
         <MenuItem
           text="Voir le registre de départ"
           icon={faEye}
