@@ -52,7 +52,12 @@ const EditPage = () => {
   });
 
   const onSubmit = async (data: FieldValues) => {
-    let filesUrls: any = null;
+    let filesUrls;
+    if (mailType === "DEPART") {
+      filesUrls = mailDataSent![0]!.filesUrls;
+    } else {
+      filesUrls = receivedDataSent![0]!.filesUrls;
+    }
     if (files) {
       toast.loading("Envoi en cours...", { duration: 2000 });
       const returnedFiles = await startUpload(files);
