@@ -52,7 +52,7 @@ const EditPage = () => {
   });
 
   const onSubmit = async (data: FieldValues) => {
-    let filesUrls: any = "[]";
+    let filesUrls: any = null;
     if (files) {
       toast.loading("Envoi en cours...", { duration: 2000 });
       const returnedFiles = await startUpload(files);
@@ -63,7 +63,7 @@ const EditPage = () => {
       sentMailMutation.mutate({
         id: mailDataSent![0]!.id,
         date: data.date,
-        filesUrls: filesUrls || [],
+        filesUrls: filesUrls,
         importance: data.importance,
         object: data.object,
         receiver: data.receiver,
