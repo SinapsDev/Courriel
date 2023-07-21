@@ -154,22 +154,25 @@ export const sentMailRouter = createTRPCRouter({
   }),
 
   getNumberOfMailsInDetailsForThisWeek: protectedProcedure.query(({ ctx }) => {
-    return ctx.prisma.receivedMail
+    return ctx.prisma.sentMail
       .count({
         where: {
           date: {
-            gte: new Date(new Date().setDate(new Date().getDate() - 7)),
+            gte: new Date(
+              new Date().setDate(new Date().getDate() - new Date().getDay() + 1)
+            ),
             lte: new Date(),
           },
         },
       })
       .then((res) => {
-        return ctx.prisma.receivedMail
+        return ctx.prisma.sentMail
           .count({
             where: {
               date: {
-                // for the last week
-                gte: new Date(new Date().setDate(new Date().getDate() - 7)),
+                gte: new Date(
+                  new Date().setDate(new Date().getDate() - new Date().getDay() + 1)
+                ),
                 lte: new Date(),
               },
               importance: "IMPORTANT",
