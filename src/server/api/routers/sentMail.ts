@@ -2,6 +2,7 @@ import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 import { utapi } from "uploadthing/server";
+import { getMonday } from "~/utils/getMonday";
 
 export const sentMailRouter = createTRPCRouter({
   getTotal: protectedProcedure.query(({ ctx }) => {
@@ -158,9 +159,7 @@ export const sentMailRouter = createTRPCRouter({
       .count({
         where: {
           date: {
-            gte: new Date(
-              new Date().setDate(new Date().getDate() - new Date().getDay() + 1)
-            ),
+            gte: getMonday(),
             lte: new Date(),
           },
         },
@@ -170,9 +169,7 @@ export const sentMailRouter = createTRPCRouter({
           .count({
             where: {
               date: {
-                gte: new Date(
-                  new Date().setDate(new Date().getDate() - new Date().getDay() + 1)
-                ),
+                gte: getMonday(),
                 lte: new Date(),
               },
               importance: "IMPORTANT",
