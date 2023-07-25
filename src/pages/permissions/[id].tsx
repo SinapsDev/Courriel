@@ -5,6 +5,8 @@ import { api } from "~/utils/api";
 import { Spinner } from "~/components/Spinner";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import logo from "~/assets/logo.png";
 
 const UserPermissionPage = ({ id }: { id: string }) => {
   const { data: userData, isLoading } = api.user.getById.useQuery({
@@ -71,6 +73,14 @@ const UserPermissionPage = ({ id }: { id: string }) => {
         <Spinner />
       ) : (
         <div className={styles.mainContainer}>
+          <Image
+            style={{
+              margin: "3px auto",
+            }}
+            height={80}
+            src={logo}
+            alt="logo"
+          />
           <h1 className={styles.mainTitle}>
             GESTION DES PERMISSIONS DE {userData?.name?.toLocaleUpperCase()}:
           </h1>

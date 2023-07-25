@@ -5,6 +5,8 @@ import { api } from "~/utils/api";
 import SideBar from "~/components/SideBar";
 import { InfoBox } from "~/components/InfoBox";
 import { Spinner } from "~/components/Spinner";
+import Image from "next/image";
+import logo from '../../assets/logo.png'
 
 const HomePage = () => {
   const { data: sessionData } = useSession();
@@ -58,6 +60,9 @@ const HomePage = () => {
         <>
           <SideBar />
           <div className={styles.homeContainer}>
+            <Image style={{
+              margin: '3px auto'
+            }} height={80} src={logo} alt="logo" />
             <h1 className={styles.mainTitle}>REGISTRE BUREAU D&apos;ORDRE</h1>
             <div className={styles.infoContainer}>
               <InfoBox

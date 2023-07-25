@@ -7,6 +7,8 @@ import { api } from "~/utils/api";
 import { toast } from "react-hot-toast";
 import { Spinner } from "~/components/Spinner";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import logo from "~/assets/logo.png";
 
 const EditPage = () => {
   const router = useRouter();
@@ -72,6 +74,14 @@ const EditPage = () => {
     <div className={styles.parentContainer}>
       <SideBar />
       <div className={styles.mainContainer}>
+        <Image
+          style={{
+            margin: "3px auto",
+          }}
+          height={80}
+          src={logo}
+          alt="logo"
+        />
         <h1 className={styles.mainTitle}>MODIFIER UN COURRIEL</h1>
         <form
           onSubmit={handleSubmit(onSumbit)}

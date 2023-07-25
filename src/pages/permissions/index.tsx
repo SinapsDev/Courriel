@@ -5,6 +5,8 @@ import { api } from "~/utils/api";
 import { Spinner } from "~/components/Spinner";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
+import logo from "~/assets/logo.png";
 
 const PermissionsPage = () => {
   const { data: allUsers, isLoading: isLoadingUsers } =
@@ -44,6 +46,14 @@ const PermissionsPage = () => {
     <div className={styles.parentContainer}>
       <SideBar />
       <div className={styles.mainContainer}>
+        <Image
+          style={{
+            margin: "3px auto",
+          }}
+          height={80}
+          src={logo}
+          alt="logo"
+        />
         <h1 className={styles.mainTitle}>GESTION DES PERMISSIONS</h1>
         <div className={styles.usersContainer}>
           <h2 className={styles.usersTitle}>Liste des utilisateurs:</h2>

@@ -7,6 +7,8 @@ import { useUploadThing } from "~/utils/uploadthingHelper";
 import { api } from "~/utils/api";
 import { useSession } from "next-auth/react";
 import { Spinner } from "~/components/Spinner";
+import Image from "next/image";
+import logo from "~/assets/logo.png";
 
 const AddPage = () => {
   const { data: sessionData } = useSession();
@@ -115,6 +117,14 @@ const AddPage = () => {
     <div className={styles.parentContainer}>
       <SideBar />
       <div className={styles.mainContainer}>
+        <Image
+          style={{
+            margin: "3px auto",
+          }}
+          height={80}
+          src={logo}
+          alt="logo"
+        />
         <div className={styles.title}>AJOUTER UN COURRIEL</div>
         <form
           className={styles.formContainer}

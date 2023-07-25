@@ -6,6 +6,8 @@ import { TableSent } from "~/components/TableSent";
 import { columns } from "~/utils/sentColumns";
 import { Spinner } from "~/components/Spinner";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
+import logo from "~/assets/logo.png";
 
 const ReadPage = () => {
   const { isLoading } = api.sentMail.getAll.useQuery({
@@ -46,6 +48,14 @@ const ReadPage = () => {
     <div className={styles.parentContainer}>
       <SideBar />
       <div className={styles.mainContainer}>
+        {/* <Image
+          style={{
+            margin: "3px auto",
+          }}
+          height={80}
+          src={logo}
+          alt="logo"
+        /> */}
         <h1 className={styles.mainTitle}>REGISTRE DE DEPART</h1>
         <div className={styles.tableContainer}>
           {isLoading || isLengthLoading || !sentMailLenth ? (

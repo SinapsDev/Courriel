@@ -6,6 +6,8 @@ import { toast } from "react-hot-toast";
 import { api } from "~/utils/api";
 import { useSession } from "next-auth/react";
 import { Spinner } from "~/components/Spinner";
+import Image from "next/image";
+import logo from "~/assets/logo.png";
 
 const RemovePage = () => {
   const {
@@ -78,6 +80,14 @@ const RemovePage = () => {
     <div className={styles.parentContainer}>
       <SideBar />
       <div className={styles.mainContainer}>
+        <Image
+          style={{
+            margin: "3px auto",
+          }}
+          height={80}
+          src={logo}
+          alt="logo"
+        />
         <h1 className={styles.mainTitle}>SUPPRIMER UN COURRIEL (ATTENTION!)</h1>
         <form
           onSubmit={handleSubmit(onSumbit)}

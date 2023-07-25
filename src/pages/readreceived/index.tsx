@@ -6,6 +6,8 @@ import { columns } from "../../utils/receivedColumns";
 import { TableReceived } from "~/components/TableReceived";
 import { Spinner } from "~/components/Spinner";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
+import logo from "~/assets/logo.png";
 
 const ReadPageReceived = () => {
   const { isLoading } = api.receivedMail.getAll.useQuery({
@@ -46,6 +48,14 @@ const ReadPageReceived = () => {
     <div className={styles.parentContainer}>
       <SideBar />
       <div className={styles.mainContainer}>
+        {/* <Image
+          style={{
+            margin: "3px auto",
+          }}
+          height={80}
+          src={logo}
+          alt="logo"
+        /> */}
         <h1 className={styles.mainTitle}>REGISTRE D'ARRIVEE</h1>
         <div className={styles.tableContainer}>
           {isLengthLoading || isLoading || !receivedMailLenth ? (

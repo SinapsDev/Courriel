@@ -3,6 +3,8 @@ import styles from "./mailData.module.css";
 import SideBar from "~/components/SideBar";
 import { api } from "~/utils/api";
 import { Spinner } from "~/components/Spinner";
+import Image from "next/image";
+import logo from "~/assets/logo.png";
 
 const MailData = ({ id }: any) => {
   let mailId = parseInt(id);
@@ -18,6 +20,14 @@ const MailData = ({ id }: any) => {
     <div className={styles.parentContainer}>
       <SideBar />
       <div className={styles.mainContainer}>
+        <Image
+          style={{
+            margin: "3px auto",
+          }}
+          height={80}
+          src={logo}
+          alt="logo"
+        />
         <h1 className={styles.mainTitle}>INFORMATIONS DU COURRIEL</h1>
         {isLoading || !mailData ? (
           <Spinner />

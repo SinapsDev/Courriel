@@ -8,6 +8,8 @@ import { useUploadThing } from "~/utils/uploadthingHelper";
 import { FieldValues, useForm } from "react-hook-form";
 import { api } from "~/utils/api";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
+import logo from "~/assets/logo.png";
 
 const EditPage = () => {
   const router = useRouter();
@@ -148,6 +150,14 @@ const EditPage = () => {
     <div className={styles.parentContainer}>
       <SideBar />
       <div className={styles.mainContainer}>
+        <Image
+          style={{
+            margin: "3px auto",
+          }}
+          height={80}
+          src={logo}
+          alt="logo"
+        />
         <h1 className={styles.mainTitle}>
           MODIFIER LE COURRIER - {mailType} - {id.replace("-", "/")}
         </h1>
