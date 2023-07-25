@@ -6,6 +6,8 @@ import { api } from "~/utils/api";
 import { useRouter } from "next/router";
 import { Spinner } from "~/components/Spinner";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
+import logo from "~/assets/logo.png";
 
 const SearchPage = () => {
   const { data: sessionData } = useSession();
@@ -65,6 +67,14 @@ const SearchPage = () => {
     <div className={styles.parentContainer}>
       <SideBar />
       <div className={styles.mainContainer}>
+        <Image
+          style={{
+            margin: "3px auto",
+          }}
+          height={80}
+          src={logo}
+          alt="logo"
+        />
         <h1 className={styles.mainTitle}>
           RECHERCHER L'INTEGRALITE DE LA BASE DE DONNEE
         </h1>
