@@ -63,7 +63,7 @@ const HomePage = () => {
             <Image style={{
               margin: '3px auto'
             }} height={80} src={logo} alt="logo" />
-            <h1 className={styles.mainTitle}>REGISTRE BUREAU D&apos;ORDRE</h1>
+            <h1 className={styles.mainTitle}>Gestion Électronique du Courrier</h1>
             <div className={styles.infoContainer}>
               <InfoBox
                 title="Nombre de courriel envoyé aujourd'hui"
