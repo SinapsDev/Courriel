@@ -159,7 +159,7 @@ const UserPermissionPage = ({ id }: { id: string }) => {
               />
             </div>
             <div className={styles.checkBoxContainer}>
-              <label htmlFor="">VOIR REGISTRE DE DEPART:</label>
+              <label htmlFor="">VOIR Registre Électronique de Départ:</label>
               <input
                 checked={checked.canReadSent}
                 type="checkbox"
@@ -171,7 +171,7 @@ const UserPermissionPage = ({ id }: { id: string }) => {
               />
             </div>
             <div className={styles.checkBoxContainer}>
-              <label htmlFor="">VOIR REGISTRE D'ARRIVEE:</label>
+              <label htmlFor="">VOIR Registre Électronique D'arrivée:</label>
               <input
                 checked={checked.canReadReceived}
                 type="checkbox"
@@ -183,7 +183,7 @@ const UserPermissionPage = ({ id }: { id: string }) => {
               />
             </div>
             <div className={styles.checkBoxContainer}>
-              <label htmlFor="">ADMINISTRATEUR (TOUR POUVOIR):</label>
+              <label htmlFor="">ADMINISTRATEUR (TOUT POUVOIR):</label>
               <input
                 checked={checked.isAdmin}
                 type="checkbox"

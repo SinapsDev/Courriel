@@ -56,7 +56,7 @@ const ReadPage = () => {
           src={logo}
           alt="logo"
         /> */}
-        <h1 className={styles.mainTitle}>REGISTRE DE DEPART</h1>
+        <h1 className={styles.mainTitle}>Registre Électronique de Départ</h1>
         <div className={styles.tableContainer}>
           {isLoading || isLengthLoading || !sentMailLenth ? (
             <Spinner />

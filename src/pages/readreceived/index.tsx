@@ -56,7 +56,7 @@ const ReadPageReceived = () => {
           src={logo}
           alt="logo"
         /> */}
-        <h1 className={styles.mainTitle}>REGISTRE D'ARRIVEE</h1>
+        <h1 className={styles.mainTitle}>Registre Électronique D'arrivée</h1>
         <div className={styles.tableContainer}>
           {isLengthLoading || isLoading || !receivedMailLenth ? (
             <Spinner />
