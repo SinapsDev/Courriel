@@ -71,7 +71,7 @@ const HomePage = () => {
                 important={sentMailDataToday?.important || 0}
               />
               <InfoBox
-                title="Nombre de courriel recu aujourd'hui"
+                title="Nombre de courriel reçu aujourd'hui"
                 value={receivedMailDataToday?.total || 0}
                 important={receivedMailDataToday?.important || 0}
               />
@@ -81,7 +81,7 @@ const HomePage = () => {
                 important={sentMailDataWeek?.important || 0}
               />
               <InfoBox
-                title="Nombre de courriel recu cette semaine"
+                title="Nombre de courriel reçu cette semaine"
                 value={receivedMailDataWeek?.total || 0}
                 important={receivedMailDataWeek?.important || 0}
               />
