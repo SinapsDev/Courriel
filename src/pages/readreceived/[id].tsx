@@ -38,7 +38,7 @@ const MailData = ({ id }: any) => {
               <p className={styles.mailDataContent}>{mailData.orderNumber}</p>
             </div>
             <div className={styles.mailData}>
-              <p className={styles.mailDataTitle}>DATE D'ENVOI:</p>
+              <p className={styles.mailDataTitle}>DATE D'ARRIVEE:</p>
               <p className={styles.mailDataContent}>
                 {new Date(mailData.date).toLocaleDateString()}
               </p>
