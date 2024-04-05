@@ -1,0 +1,65 @@
+.parentContainer {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+    background-color: #ececec;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    height: 100%;
+}
+
+.mainTitle {
+    width: 100%;
+    color: #000;
+    margin: 2% 0;
+    text-align: center;
+    font-weight: 800;
+}
+
+.usersContainer {
+    display: flex;
+    flex-direction: column;
+    color: #000;
+    padding: 2%;
+}
+
+.usersTitle {
+    font-size: 4vh;
+}
+
+.userContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2% 0;
+    padding: 2%;
+    background-color: #54e7ff;
+    border-radius: 5px;
+    color: #000;
+}
+
+.userInfos {
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+    font-weight: 500;
+    height: 100%;
+    white-space: nowrap;
+}
+
+.userContainer button {
+    background-color: #eeeeee;
+    border: none;
+    border-radius: 5px;
+    padding: 1%;
+    font-weight: 500;
+    font-size: 2vh;
+    cursor: pointer;
+    border: #ececec 1px solid;
+}

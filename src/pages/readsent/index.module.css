@@ -1,0 +1,35 @@
+.parentContainer {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    background-color: #ececec;
+}
+
+.mainContainer {
+    width: 75%;
+    height: 100%;
+    background-color: #ececec;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1%;
+}
+
+.tableContainer {
+    width: 100%;
+    height: 90%;
+    background-color: #ececec;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainTitle {
+    font-size:4.5vh;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #000;
+}

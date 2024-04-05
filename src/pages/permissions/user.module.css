@@ -1,0 +1,116 @@
+.parentContainer {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+    background-color: #ececec;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    
+    width: 75%;
+    height: 100%;
+    padding: 0 2%;
+}
+
+.mainTitle {
+    width: 100%;
+    color: #000;
+    margin: 2% 0;
+    text-align: center;
+    font-weight: 800;
+    font-size: 4vh;
+}
+
+.permissionsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding: 3%;
+    color: #000;
+}
+
+.userContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    background-color: #54e7ff;
+    padding: 1%;
+    border-radius: 5px;
+    justify-content: space-between;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.profileImage {
+    border-radius: 50%;
+}
+
+.profileImage img {
+    width: 75%;
+    border-radius: 50%;
+}
+
+.profileNameEmail {
+    display: flex;
+    flex-direction: column;
+    gap: 1%;
+}
+
+.profileName {
+    font-weight: 800;
+    font-size: 2.5vh;
+}
+
+.userRole {
+    font-weight: 800;
+    font-size: 2.5vh;
+    margin-right: 3%;
+}
+
+.permissionsContainer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.checkBoxContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4%;
+    margin: 2% 0;
+}
+
+.checkBoxContainer label {
+    font-weight: 800;
+    font-size: 2.5vh;
+    width: 35%;
+}
+
+.checkBoxContainer input {
+    width: 2.5vh;
+    height: 2.5vh;
+}
+
+.permissionsContainer button {
+    width: 20%;
+    height: 5vh;
+    border-radius: 5px;
+    border: none;
+    background-color: #54e7ff;
+    color: #000;
+    font-weight: 800;
+    font-size: 2.5vh;
+    margin: 0 auto;
+    margin-top: 2%;
+    cursor: pointer;
+}

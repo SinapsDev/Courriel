@@ -1,0 +1,98 @@
+.parentContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+  background-color: #ececec;
+  position: absolute;
+}
+
+.mainContainer {
+  width: 75%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ececec;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainContainer .title {
+  margin: 1% auto;
+  text-align: center;
+  font-size: 4.25vh;
+  color: #000;
+  font-weight: 800;
+}
+
+.mainContainer .formContainer {
+  width: 60%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: #54e7ff;
+  margin: 0 auto;
+  border-radius: 5px;
+  padding: 1%;
+}
+
+.mainContainer .formContainer select {
+  width: 100%;
+  height: 4.5vh;
+  margin: 2% 0;
+  border: none;
+  border-radius: 5px;
+  padding: 0 2%;
+  font-size: 2vh;
+  outline: none;
+}
+
+.mainContainer .formContainer .input {
+  width: 100%;
+  height: 4.75vh;
+  margin: 1.75% 0;
+  border: none;
+  border-radius: 5px;
+  padding: 2%;
+  font-size: 2vh;
+  outline: none;
+}
+
+.mainContainer .formContainer button {
+  width: 100%;
+  margin: 2% 0;
+  border: none;
+  border-radius: 5px;
+  padding: 2%;
+  font-size: 3vh;
+  outline: none;
+  background-color: #ececec;
+  color: #000;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.fileInput {
+  display: none;
+}
+
+.customFileUpload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 5px;
+  height: 5vh;
+  font-size: 2vh;
+}
+
+.fileNames {
+  width: 100%;
+  height: 6vh;
+  display: flex;
+  flex-direction: column;
+  margin: 1% 0;
+  overflow-y: scroll;
+}
